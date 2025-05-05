@@ -62,10 +62,11 @@
   .card {
     background: #fff;
     color: #111;
-    max-width: 800px;
+    max-width: 90%;
     margin: 3rem auto;
     padding: 2rem;
     border-radius: 8px;
+    text-align: center;
     /* box-shadow: 0 8px 20px rgba(0,0,0,0.3); */
   }
   
@@ -88,4 +89,9 @@
     margin-top: 1.5rem;
     font-size: 0.85rem;
     opacity: 0.7;
+  }
+
+  #skills .skills-grid {
+    padding: 0 5rem;        /* カードの内側左右に2remずつ余白を付与 */
+    box-sizing: border-box; /* padding を含めて幅を計算 */
   }
