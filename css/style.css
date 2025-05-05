@@ -1,97 +1,147 @@
-/* --- リセット & ベース設定 --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: 'Arial', sans-serif;
-    background: #eeeeee;
-    color: #222;
-    line-height: 1.6;
-  }
-  
-  /* --- ヘッダー／ヒーロー --- */
-  header.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: #eeeeee;
-  }
-  .header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-  }
-  .logo {
-    font-size: 1.25rem;
-  }
-  .logo .sub {
-    display: block;
-    font-size: 1rem;
-    opacity: 0.7;
-  }
-  .hamburger {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  .hamburger span {
-    display: block;
-    width: 24px;
-    height: 3px;
-    margin: 5px 0;
-    background: #fff;
-  }
-  .hero-content {
-    text-align: center;
-    padding-bottom: 3rem;
-  }
-  .hero-content h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  .role {
-    font-size: 1rem;
-    opacity: 0.8;
-  }
-  
-  /* --- カード共通 --- */
-  .card {
-    background: #fff;
-    color: #111;
-    max-width: 90%;
-    margin: 3rem auto;
-    padding: 2rem;
-    border-radius: 8px;
-    text-align: center;
-    /* box-shadow: 0 8px 20px rgba(0,0,0,0.3); */
-  }
-  
-  /* --- Skills グリッド --- */
-  .skills-grid {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-  }
-  .skill h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-  }
-  .skill p {
-    font-size: 0.9rem;
-    opacity: 0.8;
-  }
-  .lang {
-    text-align: center;
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    opacity: 0.7;
-  }
+/* =========================================================
+   Variables
+========================================================= */
+:root {
+  --color-page-bg:   #eeeeee;
+  --color-text:      #222;
+  --color-card-bg:   #fff;
+  --color-card-text: #111;
+  --color-shadow:    rgba(0, 0, 0, 0.1);
+}
 
-  #skills .skills-grid {
-    padding: 0 5rem;        /* カードの内側左右に2remずつ余白を付与 */
-    box-sizing: border-box; /* padding を含めて幅を計算 */
-  }
+/* =========================================================
+   Reset & Base
+========================================================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--color-page-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* =========================================================
+   Header / Hero
+========================================================= */
+header.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color-page-bg);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.logo {
+  font-size: 1.25rem;
+}
+.logo .sub {
+  display: block;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  margin: 5px 0;
+  background-color: var(--color-text);
+}
+
+.hero-content {
+  text-align: center;
+  padding-bottom: 3rem;
+}
+.hero-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.role {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* =========================================================
+   Card (About Section)
+========================================================= */
+.card {
+  background-color: var(--color-card-bg);
+  color:            var(--color-card-text);
+  max-width:        800px;
+  margin:           3rem auto;
+  padding:          2rem;
+  border-radius:    8px;
+  text-align:       center;
+}
+
+/* =========================================================
+   Skills Section
+========================================================= */
+/* セクションそのものは白背景を外してページ背景に */
+#skills {
+  background: none;
+  padding: 3rem 0;
+}
+
+/* ３つの skill 要素を並べるフレックスコンテナ */
+#skills .skills-grid {
+  display:       flex;
+  justify-content: space-between;
+  padding:       0 5rem;
+  gap:           1rem;
+  flex-wrap:     wrap;
+}
+
+/* 各 skill をカード化 */
+#skills .skill {
+  background-color: var(--color-card-bg);
+  color:            var(--color-card-text);
+  flex:             1 1 0;
+  padding:          1.5rem;
+  border-radius:    8px;
+  /* box-shadow removed for a flat look */
+  text-align:       center;
+}
+
+/* skill 内部の余白・文字サイズ調整 */
+#skills .skill h3 {
+  margin-bottom: 0.5rem;
+  font-size:     1.1rem;
+}
+#skills .skill p {
+  font-size:     0.9rem;
+  opacity:       0.8;
+  margin-bottom: 0.5rem;
+}
+
+/* 言語表示行 */
+#skills .lang {
+  text-align:       center;
+  margin-top:       1.5rem;
+  font-size:        0.85rem;
+  opacity:          0.7;
+}
+
+/* Skills セクション内の h2 を中央揃え */
+#skills > h2 {
+  text-align: center;
+}
