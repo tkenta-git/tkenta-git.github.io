@@ -82,6 +82,40 @@ header.hero {
   opacity: 0.8;
 }
 
+/* ────────────────────────────────
+   Header 内のロゴとナビを左右配置
+──────────────────────────────── */
+.header-inner {
+  display: flex;
+  align-items: center;
+}
+
+/* ロゴは左寄せ */
+.header-inner .logo {
+  margin-right: auto;
+}
+
+/* ナビメニュー */
+.header-inner .main-nav ul {
+  display: flex;
+  gap: 2rem;          /* リンク間のスペース */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* リンクスタイル */
+.header-inner .main-nav a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* ハンバーガーとの間隔を少し開けたい場合 */
+.header-inner .hamburger {
+  margin-left: 1rem;
+}
+
 
 
 /* =========================================================
