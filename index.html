@@ -17,24 +17,38 @@
       </button>
     </div>
     <div class="hero-content">
-      <h2>Super Data Visualization….</h2>
+      <h2>Kenta Tanaka</h2>
       <p class="role">Information Designer</p>
     </div>
   </header>
 
-  <!-- ===== Embedded Observable Notebook ===== -->
-<section id="notebook" style="margin:3rem auto; max-width:900px;">
-  <iframe
-    src="https://observablehq.com/embed/@kenta-tanaka/medical-expences-in-japan"
+  <!-- ===== Observable Notebook（Runtime） ===== -->
+  <section id="notebook-cycling" class="notebook-container">
+
+    <iframe
+    src="https://observablehq.com/embed/@kenta-tanaka/sfc-hello-cycling"
     width="100%"
     height="600"
     frameborder="0"
-    title="Medical Expenses in Japan"
+    title="SFC Hello Cycling"
   ></iframe>
-</section>
+
+    <div id="obs-medical"></div>
+  </section>
+
+  <!-- ===== Observable Notebook 埋め込み ===== -->
+  <section id="notebook" style="max-width:900px; margin:3rem auto;">
+    <iframe
+      src="https://observablehq.com/embed/@kenta-tanaka/medical-expences-in-japan"
+      width="100%"
+      height="600"
+      frameborder="0"
+      title="Medical Expenses in Japan"
+    ></iframe>
+  </section>
 
   <!-- About セクション -->
-  <section id="about" class="card" data-bg = '#444444'>
+  <section id="about" class="card" data-bg = '#fafafa'>
     <h2>About</h2>
     <p>
       あらゆる分野で蓄積されていくデータから、うまくインサイトを引き出すためのUI設計に興味。<br>

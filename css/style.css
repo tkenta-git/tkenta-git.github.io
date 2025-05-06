@@ -21,7 +21,7 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: var(--color-page-bg);
   color: var(--color-text);
   line-height: 1.6;
@@ -81,6 +81,8 @@ header.hero {
   font-size: 1rem;
   opacity: 0.8;
 }
+
+
 
 /* =========================================================
    Card (About Section)
@@ -147,4 +149,20 @@ header.hero {
 /* Skills セクション内の h2 を中央揃え */
 #skills > h2 {
   text-align: center;
+}
+
+/* =========================================================
+   Notebook Embed Container
+========================================================= */
+.notebook-container {
+  max-width: 900px;       /* 埋め込み幅を制限 */
+  margin: 3rem auto;      /* 上下マージン3rem、左右中央揃え */
+  text-align: center;     /* iframe（inline要素）を中央揃え */
+}
+
+.notebook-container iframe {
+  width: 100%;            /* コンテナ幅にフィット */
+  /* 必要なら高さの自動調整やmin-heightも指定可能 */
+  /* height: auto; */
+  /* min-height: 400px; */
 }
