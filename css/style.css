@@ -195,22 +195,22 @@ header.hero {
 .about-text p {
   font-size: 2rem;        /* フォントサイズ */
   margin-bottom: 1rem;    /* 段落間スペース */
-  line-height: 1;       /* 行間を1.8に */
+  line-height: 1.5;       /* 行間を1.8に */
   color: #333;            /* 本文の文字色を少し淡く */
 }
 
 /* 見出しの色・余白調整 */
 .about-text .headline {
   color: #111;            /* 見出しはくっきり黒に */
-  margin-bottom: 1rem;    /* 見出し下のスペース */
+  margin-bottom: 0rem;    /* 見出し下のスペース */
 }
 
 /* サブヘッドの色 */
 .about-text .subhead {
-  font-size: 1.5rem;
-  color: #bbbbbb;            /* 薄めのグレー */
+  font-size: 1.2rem;
+  color: #aaaaaa;            /* 薄めのグレー */
   margin-bottom: 1.5rem;  /* 上下余白 */
-  font-weight: 300 ;     /* お好みで斜体なども */
+  font-weight: 300 ;     /* 太さを少し控えめに */
 }
 
 /* リード文（キャッチ） */
@@ -233,9 +233,15 @@ header.hero {
 }
 
 /* What I do グリッドはそのまま流用 */
+/* What I do セクション */
 .what-i-do {
   margin-top: 4rem;
 }
+
+.what-i-do > h2 {
+  display: none;
+}
+
 .what-i-do h2 {
   text-align:    center;
   margin-bottom: 2rem;
@@ -243,17 +249,20 @@ header.hero {
 .what-grid {
   display:             grid;
   grid-template-columns: auto 1fr 1fr;
-  gap:                 1.5rem;
+  gap:                 2rem;
   align-items:         start;
+  font-weight: 300;
+  letter-spacing: 0.1em;
 }
 .what-grid .label {
-  font-weight: bold;
-  padding-top: 0.3rem;
+  font-weight: 300;
+  padding-top: 0rem;
+  font-size: 2rem;
 }
 .what-grid .list-en,
 .what-grid .list-ja {
   list-style: none;
-  padding:    0;
+  padding:    0rem 6rem;
 }
 .what-grid .list-en li,
 .what-grid .list-ja li {
