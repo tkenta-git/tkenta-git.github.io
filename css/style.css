@@ -23,103 +23,72 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: var(--color-page-bg);
-  color: var(--color-text);
-  line-height: 1.6;
-  transition: background-color 0.6s ease;
+  color:            var(--color-text);
+  line-height:      1.6;
+  transition:       background-color 0.6s ease;
 }
 
 /* =========================================================
    Header / Hero
 ========================================================= */
 header.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  /* 画面全高は不要にしたのでコメントアウト */
+  /* min-height: 100vh; */
+  padding:         4rem 2rem;
+  display:         flex;
+  flex-direction:  column;
   justify-content: space-between;
   background-color: var(--color-page-bg);
-  min-heigth: 80vh;
 }
 
 .header-inner {
-  display: flex;
+  display:        flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem;
+  align-items:    center;
+  padding:        1.5rem;
 }
 
+/* ロゴ */
 .logo {
   font-size: 1.25rem;
 }
 .logo .sub {
-  display: block;
-  font-size: 1rem;
-  opacity: 0.7;
+  display:    block;
+  font-size:  1rem;
+  opacity:    0.7;
 }
 
-.hamburger {
-  background: none;
-  border: none;
-  cursor: pointer;
+/* ナビゲーション */
+.header-inner .logo {
+  margin-right: auto;
 }
-.hamburger span {
-  display: block;
-  width: 24px;
-  height: 3px;
-  margin: 5px 0;
-  background-color: var(--color-text);
+.header-inner .main-nav ul {
+  display: flex;
+  gap:     2rem;
+  list-style: none;
+}
+.header-inner .main-nav a {
+  text-decoration: none;
+  color:           var(--color-text);
+  font-weight:     500;
 }
 
+/* Hero コンテンツ */
 .hero-content {
-  text-align: center;
+  text-align:    center;
   padding-bottom: 3rem;
 }
 .hero-content h2 {
-  font-size: 2rem;
+  font-size:     2rem;
   margin-bottom: 1rem;
 }
 .role {
   font-size: 1rem;
-  opacity: 0.8;
+  opacity:   0.8;
 }
-
-/* ────────────────────────────────
-   Header 内のロゴとナビを左右配置
-──────────────────────────────── */
-.header-inner {
-  display: flex;
-  align-items: center;
-}
-
-/* ロゴは左寄せ */
-.header-inner .logo {
-  margin-right: auto;
-}
-
-/* ナビメニュー */
-.header-inner .main-nav ul {
-  display: flex;
-  gap: 2rem;          /* リンク間のスペース */
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* リンクスタイル */
-.header-inner .main-nav a {
-  text-decoration: none;
-  color: var(--color-text);
-  font-weight: 500;
-}
-
-/* ハンバーガーとの間隔を少し開けたい場合 */
-.header-inner .hamburger {
-  margin-left: 1rem;
-}
-
-
 
 /* =========================================================
-   Card (About Section)
+   Card 共通
 ========================================================= */
 .card {
   background-color: var(--color-card-bg);
@@ -129,58 +98,45 @@ header.hero {
   padding:          2rem;
   border-radius:    8px;
   text-align:       center;
-  min-height:       80vh;
 }
 
 /* =========================================================
    Skills Section
 ========================================================= */
-/* セクションそのものは白背景を外してページ背景に */
 #skills {
   background: none;
-  padding: 3rem 0;
+  padding:    3rem 0;
 }
-
-/* ３つの skill 要素を並べるフレックスコンテナ */
 #skills .skills-grid {
-  display:       flex;
+  display:         flex;
   justify-content: space-between;
-  padding:       0 5rem;
-  gap:           1rem;
-  flex-wrap:     wrap;
+  padding:         0 5rem;
+  gap:             1rem;
+  flex-wrap:       wrap;
 }
-
-/* 各 skill をカード化 */
 #skills .skill {
   background-color: var(--color-card-bg);
   color:            var(--color-card-text);
   flex:             1 1 0;
   padding:          1.5rem;
   border-radius:    8px;
-  /* box-shadow removed for a flat look */
   text-align:       center;
 }
-
-/* skill 内部の余白・文字サイズ調整 */
 #skills .skill h3 {
   margin-bottom: 0.5rem;
   font-size:     1.1rem;
 }
 #skills .skill p {
+  margin-bottom: 0.5rem;
   font-size:     0.9rem;
   opacity:       0.8;
-  margin-bottom: 0.5rem;
 }
-
-/* 言語表示行 */
 #skills .lang {
-  text-align:       center;
-  margin-top:       1.5rem;
-  font-size:        0.85rem;
-  opacity:          0.7;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size:  0.85rem;
+  opacity:    0.7;
 }
-
-/* Skills セクション内の h2 を中央揃え */
 #skills > h2 {
   text-align: center;
 }
@@ -189,14 +145,133 @@ header.hero {
    Notebook Embed Container
 ========================================================= */
 .notebook-container {
-  max-width: 900px;       /* 埋め込み幅を制限 */
-  margin: 3rem auto;      /* 上下マージン3rem、左右中央揃え */
-  text-align: center;     /* iframe（inline要素）を中央揃え */
+  max-width:  900px;
+  margin:     3rem auto;
+  text-align: center;
+}
+.notebook-container iframe {
+  width: 100%;
 }
 
-.notebook-container iframe {
-  width: 100%;            /* コンテナ幅にフィット */
-  /* 必要なら高さの自動調整やmin-heightも指定可能 */
-  /* height: auto; */
-  /* min-height: 400px; */
+/* =========================================================
+   About ページ用スタイル
+========================================================= */
+.about-main {
+  max-width: 900px;
+  margin:    0 auto;
+  padding:   4rem 2rem;
+  color:     var(--color-text);
+}
+
+/* イントロ：写真＋テキスト２カラム */
+.about-intro {
+  /* 全体は上で中央寄せしているのでここは left へ */
+  text-align: left;
+  margin-bottom: 4rem;
+}
+.about-intro .about-inner {
+  display:            grid;
+  grid-template-columns: auto 1fr;
+  gap:                2rem;
+  align-items:        start;
+  margin:             0 auto;
+  max-width:          900px;
+  padding:            0; /* 上下余白は .about-main で調整済み */
+}
+.about-photo {
+  width:      240px;
+  height:     auto;
+  border-radius: 0px;
+  object-fit: cover;
+}
+/* ==============================
+   About テキスト調整例
+============================== */
+
+/* 段落間の余白（ジャンプ率）と行間 */
+.about-text p {
+  font-size: 2rem;        /* フォントサイズ */
+  margin-bottom: 1rem;    /* 段落間スペース */
+  line-height: 1;       /* 行間を1.8に */
+  color: #333;            /* 本文の文字色を少し淡く */
+}
+
+/* 見出しの色・余白調整 */
+.about-text .headline {
+  color: #111;            /* 見出しはくっきり黒に */
+  margin-bottom: 1rem;    /* 見出し下のスペース */
+}
+
+/* サブヘッドの色 */
+.about-text .subhead {
+  font-size: 1rem;
+  color: #888;            /* 薄めのグレー */
+  margin-bottom: 1.5rem;  /* 上下余白 */
+  font-style: thin;     /* お好みで斜体なども */
+}
+
+/* リード文（キャッチ） */
+.about-text .lead {
+  color: #222;            /* 主張度高め */
+  margin-bottom: 2.5rem;  /* 余白を大きめに */
+  font-size: 1.15rem;     /* フォントサイズ少しアップ */
+}
+
+/* 詳細説明 */
+.about-text .description {
+  color: #444;            /* 説明文は控えめな濃さで */
+  margin-bottom: 0;       /* 最後なら余白不要 */
+  font-size: 1rem;
+}
+
+/* What I do グリッドはそのまま流用 */
+.what-i-do {
+  margin-top: 4rem;
+}
+.what-i-do h2 {
+  text-align:    center;
+  margin-bottom: 2rem;
+}
+.what-grid {
+  display:             grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap:                 1.5rem;
+  align-items:         start;
+}
+.what-grid .label {
+  font-weight: bold;
+  padding-top: 0.3rem;
+}
+.what-grid .list-en,
+.what-grid .list-ja {
+  list-style: none;
+  padding:    0;
+}
+.what-grid .list-en li,
+.what-grid .list-ja li {
+  margin-bottom: 0.75rem;
+  font-size:     0.95rem;
+}
+
+/* モバイル対応 */
+@media (max-width: 600px) {
+  .about-intro .about-inner {
+    display:   block;
+    text-align: center;
+  }
+  .about-photo {
+    display:      block;
+    margin:       0 auto 2rem;
+    width:        60%; /* 少し小さめに */
+  }
+  .about-text p {
+    margin-bottom: 1.25rem;
+  }
+  .what-grid {
+    grid-template-columns: 1fr;
+    text-align:            center;
+  }
+  .what-grid .label {
+    display: none;
+  }
 }
