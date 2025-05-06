@@ -2,9 +2,9 @@
    Variables
 ========================================================= */
 :root {
-  --color-page-bg:   #eeeeee;
+  --color-page-bg:   #ffffff;
   --color-text:      #222;
-  --color-card-bg:   #fff;
+  --color-card-bg:   #ffffff;
   --color-card-text: #111;
   --color-shadow:    rgba(0, 0, 0, 0.1);
 }
@@ -34,18 +34,19 @@ body {
 header.hero {
   /* 画面全高は不要にしたのでコメントアウト */
   /* min-height: 100vh; */
-  padding:         4rem 2rem;
+  padding:         0rem 6rem;
   display:         flex;
   flex-direction:  column;
   justify-content: space-between;
   background-color: var(--color-page-bg);
+  max-height: 8rem;
 }
 
 .header-inner {
   display:        flex;
   justify-content: space-between;
   align-items:    center;
-  padding:        1.5rem;
+  padding:        1rem;
 }
 
 /* ロゴ */
@@ -55,7 +56,7 @@ header.hero {
 .logo .sub {
   display:    block;
   font-size:  1rem;
-  opacity:    0.7;
+  opacity:    0.2;
 }
 
 /* ナビゲーション */
@@ -115,7 +116,7 @@ header.hero {
   flex-wrap:       wrap;
 }
 #skills .skill {
-  background-color: var(--color-card-bg);
+
   color:            var(--color-card-text);
   flex:             1 1 0;
   padding:          1.5rem;
@@ -157,7 +158,8 @@ header.hero {
    About ページ用スタイル
 ========================================================= */
 .about-main {
-  max-width: 900px;
+  max-width: 1200px;
+  width: 90vw;
   margin:    0 auto;
   padding:   4rem 2rem;
   color:     var(--color-text);
@@ -175,14 +177,15 @@ header.hero {
   gap:                2rem;
   align-items:        start;
   margin:             0 auto;
-  max-width:          900px;
+  max-width:          90vw;
   padding:            0; /* 上下余白は .about-main で調整済み */
 }
 .about-photo {
-  width:      240px;
+  width:      15rem;
   height:     auto;
   border-radius: 0px;
   object-fit: cover;
+  padding: 0.5rem 1.5rem;
 }
 /* ==============================
    About テキスト調整例
@@ -204,10 +207,10 @@ header.hero {
 
 /* サブヘッドの色 */
 .about-text .subhead {
-  font-size: 1rem;
-  color: #888;            /* 薄めのグレー */
+  font-size: 1.5rem;
+  color: #bbbbbb;            /* 薄めのグレー */
   margin-bottom: 1.5rem;  /* 上下余白 */
-  font-style: thin;     /* お好みで斜体なども */
+  font-weight: 300 ;     /* お好みで斜体なども */
 }
 
 /* リード文（キャッチ） */
@@ -215,13 +218,18 @@ header.hero {
   color: #222;            /* 主張度高め */
   margin-bottom: 2.5rem;  /* 余白を大きめに */
   font-size: 1.15rem;     /* フォントサイズ少しアップ */
+  line-height: 1.8;       /* 行間を1.8に */
+  font-weight: 500;       /* 太さを少し強調 */
+  padding-bottom: 4rem; /* 下に余白を追加 */
 }
 
 /* 詳細説明 */
 .about-text .description {
   color: #444;            /* 説明文は控えめな濃さで */
   margin-bottom: 0;       /* 最後なら余白不要 */
-  font-size: 1rem;
+  font-size: 1rem;      /* フォントサイズ */
+  font-weight: 500;      /* 太さを少し強調 */
+  line-height: 1.5;      /* 行間を1.8に */
 }
 
 /* What I do グリッドはそのまま流用 */
@@ -262,7 +270,7 @@ header.hero {
   .about-photo {
     display:      block;
     margin:       0 auto 2rem;
-    width:        60%; /* 少し小さめに */
+    width:        50%; /* 少し小さめに */
   }
   .about-text p {
     margin-bottom: 1.25rem;
