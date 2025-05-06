@@ -37,6 +37,7 @@ header.hero {
   flex-direction: column;
   justify-content: space-between;
   background-color: var(--color-page-bg);
+  min-heigth: 80vh;
 }
 
 .header-inner {
