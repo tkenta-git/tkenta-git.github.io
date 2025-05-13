@@ -6,7 +6,7 @@
   --color-text:      #222;
   --color-card-bg:   #ffffff;
   --color-card-text: #111;
-  --color-shadow:    rgba(0, 0, 0, 0.1);
+  --color-skills-bg: #fafafa;
 }
 
 /* =========================================================
@@ -20,275 +20,151 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 100%;
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: var(--color-page-bg);
   color:            var(--color-text);
   line-height:      1.6;
-  transition:       background-color 0.6s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* =========================================================
-   Header / Hero
+   Utility Classes
 ========================================================= */
-header.hero {
-  /* 画面全高は不要にしたのでコメントアウト */
-  /* min-height: 100vh; */
-  padding:         0rem 6rem;
-  display:         flex;
-  flex-direction:  column;
-  justify-content: space-between;
-  background-color: var(--color-page-bg);
-  max-height: 8rem;
+.container {
+  width:      90%;
+  max-width: 1200px;
+  margin:    0 auto;
+  padding:   0 1rem;
+}
+
+/* =========================================================
+   Header & Hero
+========================================================= */
+.hero {
+  padding:      2rem 0;
+  background:   var(--color-page-bg);
 }
 
 .header-inner {
   display:        flex;
   justify-content: space-between;
   align-items:    center;
-  padding:        1rem;
 }
 
-/* ロゴ */
 .logo {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
+
 .logo .sub {
-  display:    block;
-  font-size:  1rem;
-  opacity:    0.2;
-}
-
-/* ナビゲーション */
-.header-inner .logo {
-  margin-right: auto;
-}
-.header-inner .main-nav ul {
-  display: flex;
-  gap:     2rem;
-  list-style: none;
-}
-.header-inner .main-nav a {
-  text-decoration: none;
-  color:           var(--color-text);
-  font-weight:     500;
-}
-
-/* Hero コンテンツ */
-.hero-content {
-  text-align:    center;
-  padding-bottom: 3rem;
-}
-.hero-content h2 {
-  font-size:     2rem;
-  margin-bottom: 1rem;
-}
-.role {
   font-size: 1rem;
-  opacity:   0.8;
+  color:     #666;
+}
+
+.main-nav .nav-list {
+  display:    flex;
+  list-style: none;
+  gap:        1.5rem;
+}
+
+.nav-item a {
+  font-size:      1rem;
+  transition:     color 0.3s;
+}
+
+.nav-item a:hover {
+  color: #007acc;
+}
+
+.hero-content {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.hero-content h2 {
+  font-size: 2.5rem;
+}
+
+.hero-content .role {
+  font-size:    1.25rem;
+  color:        #555;
+  margin-top:   0.5rem;
 }
 
 /* =========================================================
-   Card 共通
+   Observable Notebook Sections
 ========================================================= */
-.card {
-  background-color: var(--color-card-bg);
-  color:            var(--color-card-text);
-  max-width:        800px;
-  margin:           3rem auto;
-  padding:          2rem;
-  border-radius:    8px;
-  text-align:       center;
+.notebook-container,
+#notebook-cycling,
+#notebook,
+#notebook-shannon {
+  max-width: 900px;
+  margin:    3rem auto;
+  padding:   0 1rem;
+}
+
+.notebook-container iframe,
+#notebook-cycling iframe,
+#notebook iframe {
+  display: block;
+  width:   100%;
+  border:  none;
+  height:  600px;
+}
+
+/* Shannon’s Index Calculator: aspect-ratio 16:9 */
+#notebook-shannon iframe {
+  aspect-ratio: 16 / 9;
 }
 
 /* =========================================================
    Skills Section
 ========================================================= */
 #skills {
-  background: none;
-  padding:    3rem 0;
+  background: var(--color-skills-bg);
+  padding:    3rem 1rem;
 }
-#skills .skills-grid {
-  display:         flex;
-  justify-content: space-between;
-  padding:         0 5rem;
-  gap:             1rem;
-  flex-wrap:       wrap;
-}
-#skills .skill {
 
-  color:            var(--color-card-text);
-  flex:             1 1 0;
-  padding:          1.5rem;
-  border-radius:    8px;
-  text-align:       center;
+.section-title {
+  font-size:    2rem;
+  text-align:   center;
+  margin-bottom:2rem;
 }
-#skills .skill h3 {
+
+.skills-grid {
+  display:       grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap:            1.5rem;
+}
+
+.skill.card {
+  background:    var(--color-card-bg);
+  border-radius: 0.5rem;
+  padding:       1.5rem;
+  box-shadow:    0 2px 8px rgba(0,0,0,0.1);
+}
+
+.skill h3 {
   margin-bottom: 0.5rem;
-  font-size:     1.1rem;
+  font-size:     1.25rem;
 }
-#skills .skill p {
-  margin-bottom: 0.5rem;
-  font-size:     0.9rem;
-  opacity:       0.8;
+
+.skill p {
+  font-size: 1rem;
+  color:     var(--color-card-text);
 }
-#skills .lang {
+
+.lang {
   text-align: center;
   margin-top: 1.5rem;
-  font-size:  0.85rem;
-  opacity:    0.7;
-}
-#skills > h2 {
-  text-align: center;
-}
-
-/* =========================================================
-   Notebook Embed Container
-========================================================= */
-.notebook-container {
-  max-width:  900px;
-  margin:     3rem auto;
-  text-align: center;
-}
-.notebook-container iframe {
-  width: 100%;
-}
-
-/* =========================================================
-   About ページ用スタイル
-========================================================= */
-.about-main {
-  max-width: 1200px;
-  width: 90vw;
-  margin:    0 auto;
-  padding:   4rem 2rem;
-  color:     var(--color-text);
-}
-
-/* イントロ：写真＋テキスト２カラム */
-.about-intro {
-  /* 全体は上で中央寄せしているのでここは left へ */
-  text-align: left;
-  margin-bottom: 4rem;
-}
-.about-intro .about-inner {
-  display:            grid;
-  grid-template-columns: auto 1fr;
-  gap:                2rem;
-  align-items:        start;
-  margin:             0 auto;
-  max-width:          90vw;
-  padding:            0; /* 上下余白は .about-main で調整済み */
-}
-.about-photo {
-  width:      15rem;
-  height:     auto;
-  border-radius: 0px;
-  object-fit: cover;
-  padding: 0.5rem 1.5rem;
-}
-/* ==============================
-   About テキスト調整例
-============================== */
-
-/* 段落間の余白（ジャンプ率）と行間 */
-.about-text p {
-  font-size: 2rem;        /* フォントサイズ */
-  margin-bottom: 1rem;    /* 段落間スペース */
-  line-height: 1.5;       /* 行間を1.8に */
-  color: #333;            /* 本文の文字色を少し淡く */
-}
-
-/* 見出しの色・余白調整 */
-.about-text .headline {
-  color: #111;            /* 見出しはくっきり黒に */
-  margin-bottom: 0rem;    /* 見出し下のスペース */
-}
-
-/* サブヘッドの色 */
-.about-text .subhead {
-  font-size: 1.2rem;
-  color: #aaaaaa;            /* 薄めのグレー */
-  margin-bottom: 1.5rem;  /* 上下余白 */
-  font-weight: 300 ;     /* 太さを少し控えめに */
-}
-
-/* リード文（キャッチ） */
-.about-text .lead {
-  color: #222;            /* 主張度高め */
-  margin-bottom: 2.5rem;  /* 余白を大きめに */
-  font-size: 1.15rem;     /* フォントサイズ少しアップ */
-  line-height: 1.8;       /* 行間を1.8に */
-  font-weight: 500;       /* 太さを少し強調 */
-  padding-bottom: 4rem; /* 下に余白を追加 */
-}
-
-/* 詳細説明 */
-.about-text .description {
-  color: #444;            /* 説明文は控えめな濃さで */
-  margin-bottom: 0;       /* 最後なら余白不要 */
-  font-size: 1rem;      /* フォントサイズ */
-  font-weight: 500;      /* 太さを少し強調 */
-  line-height: 1.5;      /* 行間を1.8に */
-}
-
-/* What I do グリッドはそのまま流用 */
-/* What I do セクション */
-.what-i-do {
-  margin-top: 4rem;
-}
-
-.what-i-do > h2 {
-  display: none;
-}
-
-.what-i-do h2 {
-  text-align:    center;
-  margin-bottom: 2rem;
-}
-.what-grid {
-  display:             grid;
-  grid-template-columns: auto 1fr 1fr;
-  gap:                 2rem;
-  align-items:         start;
-  font-weight: 300;
-  letter-spacing: 0.1em;
-}
-.what-grid .label {
-  font-weight: 300;
-  padding-top: 0rem;
-  font-size: 2rem;
-}
-.what-grid .list-en,
-.what-grid .list-ja {
-  list-style: none;
-  padding:    0rem 6rem;
-}
-.what-grid .list-en li,
-.what-grid .list-ja li {
-  margin-bottom: 0.75rem;
-  font-size:     0.95rem;
-}
-
-/* モバイル対応 */
-@media (max-width: 600px) {
-  .about-intro .about-inner {
-    display:   block;
-    text-align: center;
-  }
-  .about-photo {
-    display:      block;
-    margin:       0 auto 2rem;
-    width:        50%; /* 少し小さめに */
-  }
-  .about-text p {
-    margin-bottom: 1.25rem;
-  }
-  .what-grid {
-    grid-template-columns: 1fr;
-    text-align:            center;
-  }
-  .what-grid .label {
-    display: none;
-  }
+  font-size: 1rem;
 }
