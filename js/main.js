@@ -35,3 +35,26 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('header[id], section[id]').forEach(sec => {
   observer.observe(sec);
 });
+
+// ——————————————————————————————
+// ナビリンクの下線表示とクリック時の他リンクグレーアウト
+// ——————————————————————————————
+document.addEventListener('DOMContentLoaded', function() {
+  const navLinks = document.querySelectorAll('.main-nav .nav-list .nav-item a');
+  navLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      const href = link.getAttribute('href');
+      // ページ内リンクならスムーズスクロールしつつ遷移を抑制
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+      }
+      // すべてのリンクを一度グレーアウト
+      navLinks.forEach(function(l) {
+        l.classList.add('inactive');
+      });
+      // クリックしたリンクだけアクティブ（グレーアウト解除）
+      link.classList.remove('inactive');
+    });
+  });
+});
