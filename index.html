@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kenta Tanaka Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ヘッダー／トップヒーロー -->
+  <header id="top" class="hero" data-bg="#FFFFFF">
+    <div class="container header-inner">
+      <!-- 左寄せ：ロゴ -->
+      <h1 class="logo">
+        Kenta Tanaka<br>
+        <span class="sub">Portfolio</span>
+      </h1>
+  
+      <!-- 右寄せ：ナビ -->
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="about/index.html">About</a></li>
+          <li class="nav-item"><a href="#work">Work</a></li>
+          <li class="nav-item"><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  
+    <div class="hero-content">
+      <h2>Kenta Tanaka</h2>
+      <p class="role">Information Designer</p>
+    </div>
+  </header>
+
+  <!-- ===== Observable Notebook（Runtime） ===== -->
+  <section id="notebook-cycling" class="notebook-container">
+
+    <iframe
+    src="https://observablehq.com/embed/@kenta-tanaka/sfc-hello-cycling"
+    width="100%"
+    height="600"
+    frameborder="0"
+    title="SFC Hello Cycling"
+  ></iframe>
+
+    <div id="obs-medical"></div>
+  </section>
+
+  <!-- ===== Observable Notebook 埋め込み ===== -->
+  <section id="notebook" style="max-width:900px; margin:3rem auto;">
+    <iframe
+      src="https://observablehq.com/embed/@kenta-tanaka/medical-expences-in-japan"
+      width="100%"
+      height="600"
+      frameborder="0"
+      title="Medical Expenses in Japan"
+    ></iframe>
+  </section>
+
+  <!-- ===== Observable Notebook 埋め込み ===== -->
+  <section id="notebook-shannon" class="notebook-container">
+    <iframe
+      src="https://observablehq.com/embed/@kenta-tanaka/shannons-index-calculator"
+      width="100%"
+      height="600"
+      frameborder="0"
+      title="Shannon's index calculator"
+    ></iframe>
+  </section>
+
+  <!-- ===== Skills セクション ===== -->
+  <section id="skills" class="card"   data-bg="#fafafa">
+    <h2 class="section-title">Skill</h2>
+
+    <div class="skills-grid">
+      <!-- 1つめのボックス -->
+      <div class="skill card">
+        <h3>Design</h3>
+        <p>UI / UX / Figma / Adobe CC / WordPress</p>
+      </div>
+      <!-- 2つめのボックス -->
+      <div class="skill card">
+        <h3>Coding</h3>
+        <p>HTML / CSS / JavaScript / Python / R / MySQL</p>
+      </div>
+      <!-- 3つめのボックス -->
+      <div class="skill card">
+        <h3>Photograph</h3>
+        <p>Lightroom Classic</p>
+      </div>
+    </div>
+
+    <p class="lang">+ Language (English: C1, German: A2)</p>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  new Typed('.hero-content h2', {
+    strings: ["Super Data Visualization….", "Information Designer"],
+    typeSpeed: 50,
+    backSpeed: 30,
+    backDelay: 2000,
+    loop: true
+  });
+</script>
+
+</html>
