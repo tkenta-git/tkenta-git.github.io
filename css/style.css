@@ -31,13 +31,25 @@ body {
 /* =========================================================
    Header / Hero
 ========================================================= */
-header.hero {
+.header {
   /* 画面全高は不要にしたのでコメントアウト */
   /* min-height: 100vh; */
   padding:         0rem 1rem;
   display:         flex;
   flex-direction:  column;
-  justify-content: space-between;
+  justify-content: center;
+  background-color: var(--color-page-bg);
+  min-height: 10vh;
+  max-height: 10vh;
+}
+
+.hero {
+  /* 画面全高は不要にしたのでコメントアウト */
+  /* min-height: 100vh; */
+  padding:         0rem 1rem;
+  display:         flex;
+  flex-direction:  column;
+  justify-content: center;
   background-color: var(--color-page-bg);
   min-height: 80vh;
   max-height: 80vh;
@@ -289,6 +301,7 @@ header.hero {
   text-align:    center;
   margin-bottom: 2rem;
 }
+
 .what-grid {
   display:             grid;
   grid-template-columns: auto 1fr 1fr;
@@ -306,12 +319,104 @@ header.hero {
 .what-grid .list-ja {
   list-style: none;
   padding:    0rem 6rem;
+  padding-bottom: 3rem;
 }
 .what-grid .list-en li,
 .what-grid .list-ja li {
   margin-bottom: 0.75rem;
   font-size:     0.95rem;
 }
+
+/* =========================================================
+   Educaion (same layout as “What I do”)
+========================================================= */
+
+.education {
+  margin-top: 4rem;
+}
+
+.education > h2 {
+  display: none;
+}
+
+.education h2 {
+  text-align:    center;
+  margin-bottom: 2rem;
+}
+
+.education-grid {
+  display:             grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap:                 2rem;
+  align-items:         start;
+  font-weight:         300;
+  letter-spacing:      0.1em;
+}
+
+.education-grid .label {
+  font-weight: 300;
+  padding-top: 0rem;
+  font-size: 2rem;
+}
+
+.education-grid .list-en,
+.education-grid .list-ja {
+  list-style: none;
+  padding:    0rem 6rem;
+  padding-bottom: 3rem;
+}
+
+.education-grid .list-en li,
+.education-grid .list-ja li {
+  margin-bottom: 0.75rem;
+  font-size:     0.95rem;
+}
+
+
+/* =========================================================
+   What I use (same layout as “What I do”)
+========================================================= */
+.what-i-use {
+  margin-top: 4rem;
+}
+
+.what-i-use > h2 {
+  display: none;
+}
+
+.what-i-use h2 {
+  text-align:    center;
+  margin-bottom: 2rem;
+}
+
+.what-i-use-grid {
+  display:             grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap:                 2rem;
+  align-items:         start;
+  font-weight:         300;
+  letter-spacing:      0.1em;
+}
+
+.what-i-use-grid .label {
+  font-weight: 300;
+  padding-top: 0rem;
+  font-size: 2rem;
+}
+
+.what-i-use-grid .list-en,
+.what-i-use-grid .list-ja {
+  list-style: none;
+  padding:    0rem 6rem;
+  padding-bottom: 3rem;
+}
+
+.what-i-use-grid .list-en li,
+.what-i-use-grid .list-ja li {
+  margin-bottom: 0.75rem;
+  font-size:     0.95rem;
+}
+
 
 /* モバイル対応 */
 @media (max-width: 600px) {
