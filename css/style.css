@@ -46,7 +46,19 @@ header.hero {
   display:        flex;
   justify-content: space-between;
   align-items:    center;
-  padding:        1rem;
+  padding:        2rem;
+}
+
+/* Hero のスライドアップ＆フェードイン */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ロゴ */
@@ -82,6 +94,10 @@ header.hero {
 .hero-content {
   text-align:    center;
   padding-bottom: 3rem;
+  opacity: 0;                               /* 初期は透明 */
+  transform: translateY(20px);              /* 下から 20px */
+  animation: slideUpFadeIn 0.8s ease-out forwards;
+  animation-delay: 0.5s;                    /* お好みで遅延時間を調整 */
 }
 .hero-content h2 {
   font-size:     2rem;
