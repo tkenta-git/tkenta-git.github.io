@@ -20,8 +20,37 @@
   box-sizing: border-box;
 }
 
+/* ————————————————
+   ラテン文字（英語・数字・記号）用
+——————————————— */
+@font-face {
+  font-family: "MyLatin";
+  /* macOS標準のHelvetica Neueを使う */
+  src: local("Helvetica Neue"), local("Arial");
+  /* 基本ラテン文字と拡張ラテン文字 */
+  unicode-range: U+0000-00FF, U+0100-024F;
+}
+
+/* ————————————————
+   日本語（ひらがな・カタカナ・漢字）用
+——————————————— */
+@font-face {
+  font-family: "MyJapanese";
+  /* macOS標準のヒラギノ角ゴ Pro を使う */
+  src: local("Hiragino Kaku Gothic Pro"), local("Meiryo");
+  /* 主要な日本語文字コード範囲 */
+  unicode-range:
+    U+3000-30FF,  /* ひらがな・カタカナ・句読点 */
+    U+4E00-9FFF,  /* CJK統合漢字 */
+    U+FF00-FFEF;  /* 全角英数字・記号 */
+}
+
+/* ————————————————
+   ベースフォント設定
+——————————————— */
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* 先にラテン用、次に日本語用、最後に汎用 */
+  font-family: "MyLatin", "MyJapanese", sans-serif;
   background-color: var(--color-page-bg);
   color:            var(--color-text);
   line-height:      1.6;
@@ -307,11 +336,11 @@ body {
   grid-template-columns: auto 1fr 1fr;
   gap:                 2rem;
   align-items:         start;
-  font-weight: 300;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.03em; /* 英語・日本語の文字間を少し広げる */
 }
 .what-grid .label {
-  font-weight: 300;
+  font-weight: 500; /* What I Doの太さ */
   padding-top: 0rem;
   font-size: 2rem;
 }
@@ -395,7 +424,7 @@ body {
   gap:                 2rem;
   align-items:         start;
   font-weight:         300;
-  letter-spacing:      0.1em;
+  letter-spacing:      0em;
 }
 
 .what-i-use-grid .label {
