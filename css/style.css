@@ -20,8 +20,37 @@
   box-sizing: border-box;
 }
 
+/* ————————————————
+   ラテン文字（英語・数字・記号）用
+——————————————— */
+@font-face {
+  font-family: "MyLatin";
+  /* macOS標準のHelvetica Neueを使う */
+  src: local("Helvetica Neue"), local("Arial");
+  /* 基本ラテン文字と拡張ラテン文字 */
+  unicode-range: U+0000-00FF, U+0100-024F;
+}
+
+/* ————————————————
+   日本語（ひらがな・カタカナ・漢字）用
+——————————————— */
+@font-face {
+  font-family: "MyJapanese";
+  /* macOS標準のヒラギノ角ゴ Pro を使う */
+  src: local("Hiragino Kaku Gothic Pro"), local("Meiryo");
+  /* 主要な日本語文字コード範囲 */
+  unicode-range:
+    U+3000-30FF,  /* ひらがな・カタカナ・句読点 */
+    U+4E00-9FFF,  /* CJK統合漢字 */
+    U+FF00-FFEF;  /* 全角英数字・記号 */
+}
+
+/* ————————————————
+   ベースフォント設定
+——————————————— */
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* 先にラテン用、次に日本語用、最後に汎用 */
+  font-family: "MyLatin", "MyJapanese", sans-serif;
   background-color: var(--color-page-bg);
   color:            var(--color-text);
   line-height:      1.6;
@@ -31,22 +60,76 @@ body {
 /* =========================================================
    Header / Hero
 ========================================================= */
-header.hero {
+.header {
   /* 画面全高は不要にしたのでコメントアウト */
   /* min-height: 100vh; */
-  padding:         0rem 6rem;
+  padding:         0rem 1rem;
   display:         flex;
   flex-direction:  column;
-  justify-content: space-between;
+  justify-content: center;
   background-color: var(--color-page-bg);
-  max-height: 8rem;
+  min-height: 10vh;
+  max-height: 10vh;
+}
+
+.hero {
+  /* 画面全高は不要にしたのでコメントアウト */
+  /* min-height: 100vh; */
+  padding:         0rem 1rem;
+  display:         flex;
+  flex-direction:  column;
+  justify-content: center;
+  background-color: var(--color-page-bg);
+  min-height: 80vh;
+  max-height: 80vh;
+}
+
+/* Hero コンテンツ */
+.hero-content {
+  text-align:    left;
+  padding-bottom: 5rem;
+  padding-left: 5rem;
+  opacity: 0;                               /* 初期は透明 */
+  transform: translateY(10px);              /* 下から 20px */
+  animation: slideUpFadeIn 0.8s ease-out forwards;
+  animation-delay: 0.5s;                    /* お好みで遅延時間を調整 */
+}
+.hero-content h2 {
+  font-size:     3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.hero-content h3 {
+  font-size:    2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.00em;
+}
+
+.role {
+  font-size: 1.2rem;
+  opacity:   1;
 }
 
 .header-inner {
   display:        flex;
   justify-content: space-between;
   align-items:    center;
-  padding:        1rem;
+  padding:        2rem;
+}
+
+/* Hero のスライドアップ＆フェードイン */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ロゴ */
@@ -76,20 +159,6 @@ header.hero {
 
 .header-inner .main-nav a.inactive {
   color: #aaa;
-}
-
-/* Hero コンテンツ */
-.hero-content {
-  text-align:    center;
-  padding-bottom: 3rem;
-}
-.hero-content h2 {
-  font-size:     2rem;
-  margin-bottom: 1rem;
-}
-.role {
-  font-size: 1rem;
-  opacity:   0.8;
 }
 
 /* =========================================================
@@ -261,16 +330,17 @@ header.hero {
   text-align:    center;
   margin-bottom: 2rem;
 }
+
 .what-grid {
   display:             grid;
   grid-template-columns: auto 1fr 1fr;
   gap:                 2rem;
   align-items:         start;
-  font-weight: 300;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.03em; /* 英語・日本語の文字間を少し広げる */
 }
 .what-grid .label {
-  font-weight: 300;
+  font-weight: 500; /* What I Doの太さ */
   padding-top: 0rem;
   font-size: 2rem;
 }
@@ -278,12 +348,104 @@ header.hero {
 .what-grid .list-ja {
   list-style: none;
   padding:    0rem 6rem;
+  padding-bottom: 3rem;
 }
 .what-grid .list-en li,
 .what-grid .list-ja li {
   margin-bottom: 0.75rem;
   font-size:     0.95rem;
 }
+
+/* =========================================================
+   Educaion (same layout as “What I do”)
+========================================================= */
+
+.education {
+  margin-top: 4rem;
+}
+
+.education > h2 {
+  display: none;
+}
+
+.education h2 {
+  text-align:    center;
+  margin-bottom: 2rem;
+}
+
+.education-grid {
+  display:             grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap:                 2rem;
+  align-items:         start;
+  font-weight:         300;
+  letter-spacing:      0.1em;
+}
+
+.education-grid .label {
+  font-weight: 300;
+  padding-top: 0rem;
+  font-size: 2rem;
+}
+
+.education-grid .list-en,
+.education-grid .list-ja {
+  list-style: none;
+  padding:    0rem 6rem;
+  padding-bottom: 3rem;
+}
+
+.education-grid .list-en li,
+.education-grid .list-ja li {
+  margin-bottom: 0.75rem;
+  font-size:     0.95rem;
+}
+
+
+/* =========================================================
+   What I use (same layout as “What I do”)
+========================================================= */
+.what-i-use {
+  margin-top: 4rem;
+}
+
+.what-i-use > h2 {
+  display: none;
+}
+
+.what-i-use h2 {
+  text-align:    center;
+  margin-bottom: 2rem;
+}
+
+.what-i-use-grid {
+  display:             grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap:                 2rem;
+  align-items:         start;
+  font-weight:         300;
+  letter-spacing:      0em;
+}
+
+.what-i-use-grid .label {
+  font-weight: 300;
+  padding-top: 0rem;
+  font-size: 2rem;
+}
+
+.what-i-use-grid .list-en,
+.what-i-use-grid .list-ja {
+  list-style: none;
+  padding:    0rem 6rem;
+  padding-bottom: 3rem;
+}
+
+.what-i-use-grid .list-en li,
+.what-i-use-grid .list-ja li {
+  margin-bottom: 0.75rem;
+  font-size:     0.95rem;
+}
+
 
 /* モバイル対応 */
 @media (max-width: 600px) {
