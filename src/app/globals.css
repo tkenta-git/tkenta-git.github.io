@@ -163,9 +163,30 @@ body {
 }
 
 .header-inner .main-nav a {
-  text-decoration: underline;
+  text-decoration: none;
   color: var(--color-text);
   font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.header-inner .main-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #888;
+  transition: width 0.3s ease;
+}
+
+.header-inner .main-nav a:hover {
+  color: #888;
+}
+
+.header-inner .main-nav a:hover::after {
+  width: 100%;
 }
 
 .header-inner .main-nav a.inactive {
