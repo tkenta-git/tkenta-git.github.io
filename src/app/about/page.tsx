@@ -8,7 +8,7 @@ export default function About() {
         <div className="about-inner">
           {/* 左カラム：プロフィール写真 */}
           {/* publicフォルダに your-photo.jpg という名前で画像をおいてください */}
-          <Image src="/your-photo.jpg" 
+          <Image src="/profile.jpg" 
                alt="Kenta Tanaka" 
                width={240}
                height={240}
