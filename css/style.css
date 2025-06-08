@@ -137,6 +137,12 @@ body {
 /* ロゴ */
 .logo {
   font-size: clamp(1rem, 3vw, 1.25rem);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #888;
 }
 
 .logo .sub {
