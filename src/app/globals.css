@@ -317,6 +317,10 @@ body {
   border-radius: 0px;
   object-fit: cover;
   padding: 0.5rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInFromLeft 1s ease-out forwards;
+  animation-delay: 0.3s;
 }
 
 /* About テキスト調整 */
@@ -325,11 +329,15 @@ body {
   margin-bottom: 1rem;
   line-height: 1.5;
   color: #333;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFadeIn 0.8s ease-out forwards;
 }
 
 .about-text .headline {
   color: #111;
   margin-bottom: 0;
+  animation-delay: 0.5s;
 }
 
 .about-text .subhead {
@@ -337,6 +345,7 @@ body {
   color: #aaa;
   margin-bottom: 1.5rem;
   font-weight: 300;
+  animation-delay: 0.7s;
 }
 
 .about-text .lead {
@@ -346,6 +355,7 @@ body {
   line-height: 1.8;
   font-weight: 500;
   padding-bottom: 4rem;
+  animation-delay: 0.9s;
 }
 
 .about-text .description {
@@ -529,4 +539,7 @@ body {
   .header-inner .main-nav ul {
     gap: 1rem;
   }
+}
+
+
 }
