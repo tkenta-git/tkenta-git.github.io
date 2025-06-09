@@ -7,12 +7,14 @@ export default function About() {
       <section className="about-intro">
         <div className="about-inner">
           {/* 左カラム：プロフィール写真 */}
-          {/* publicフォルダに your-photo.jpg という名前で画像をおいてください */}
           <Image src="/profile.jpg" 
-               alt="Kenta Tanaka" 
-               width={240}
-               height={240}
-               className="about-photo" />
+            alt="Kenta Tanaka" 
+            width={400}
+            height={400}
+            className="about-photo"
+            priority
+            sizes="(max-width: 768px) 50vw, 400px"
+            quality={100} />
       
           {/* 右カラム：テキスト */}
           <div className="about-text">

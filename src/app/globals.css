@@ -323,6 +323,17 @@ body {
   animation-delay: 0.3s;
 }
 
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* About テキスト調整 */
 .about-text p {
   font-size: clamp(1.2rem, 3vw, 2rem);
