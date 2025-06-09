@@ -19,15 +19,6 @@ export default function Home() {
         ></iframe>
         <div id="obs-medical"></div>
       </section>
-      <section id="notebook" style={{ maxWidth: '900px', margin: '3rem auto' }}>
-        <iframe
-          src="https://observablehq.com/embed/@kenta-tanaka/medical-expences-in-japan"
-          width="100%"
-          height="600"
-          frameBorder="0"
-          title="Medical Expenses in Japan"
-        ></iframe>
-      </section>
       <section id="notebook-shannon" className="notebook-container">
         <iframe
           src="https://observablehq.com/embed/@kenta-tanaka/shannon-diversity-index-calculator-visualizer"
@@ -36,6 +27,15 @@ export default function Home() {
           frameBorder="0"
           style={{ border: '1px solid #eeeeee', borderRadius: '0px' }}
           title="Shannon Diversity Index Calculator & Visualizer"
+        ></iframe>
+      </section>
+      <section id="notebook" style={{ maxWidth: '900px', margin: '3rem auto' }}>
+        <iframe
+          src="https://observablehq.com/embed/@kenta-tanaka/medical-expences-in-japan"
+          width="100%"
+          height="600"
+          frameBorder="0"
+          title="Medical Expenses in Japan"
         ></iframe>
       </section>
     </main>
