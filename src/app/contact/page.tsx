@@ -8,9 +8,10 @@ export default function Contact() {
               Feel free to reach out if you&apos;d like to work together or just want to say hello.
             </p>
             <p className="description">
-              Email: <a href="mailto:contact@kentatanaka.com" style={{ color: 'inherit', textDecoration: 'underline' }}>contact@kentatanaka.com</a><br /><br />
-              LinkedIn: <a href="https://linkedin.com/in/kentatanaka" target="_blank" style={{ color: 'inherit', textDecoration: 'underline' }}>linkedin.com/in/kentatanaka</a><br /><br />
-              GitHub: <a href="https://github.com/kenta-tanaka" target="_blank" style={{ color: 'inherit', textDecoration: 'underline' }}>github.com/kenta-tanaka</a>
+              LinkedIn: <a href="https://www.linkedin.com/in/kenta-tanaka-380491254/" target="_blank" style={{ color: 'inherit', textDecoration: 'underline' }}>linkedin.com/in/kenta-tanaka</a><br /><br />
+              GitHub: <a href="https://github.com/tkenta-git" target="_blank" style={{ color: 'inherit', textDecoration: 'underline' }}>github.com/tkenta-git</a><br /><br />
+              Observable: <a href="https://observablehq.com/@kenta-tanaka" target="_blank" style={{ color: 'inherit', textDecoration: 'underline' }}>observablehq.com/@kenta-tanaka</a><br /><br />
+              Photography: <a href="https://tkenta.myportfolio.com/work" target="_blank" style={{ color: 'inherit', textDecoration: 'underline' }}>tkenta.myportfolio.com</a>
             </p>
           </div>
         </div>
