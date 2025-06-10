@@ -52,27 +52,27 @@ const BarChart = ({ species }: { species: Species[] }) => {
       .nice()
       .range([height - margin.bottom, margin.top]);
 
-    const xAxis = (g: d3.Selection<SVGGElement, unknown, null, undefined>) => 
+    const xAxis = (g: d3.Selection<SVGGElement, unknown, SVGElement, unknown>) => 
       g.call(d3.axisBottom(x));
 
-    const yAxis = (g: d3.Selection<SVGGElement, unknown, null, undefined>) => 
+    const yAxis = (g: d3.Selection<SVGGElement, unknown, SVGElement, unknown>) => 
       g.call(d3.axisLeft(y));
 
-    svg.selectAll(".x-axis")
+    svg.selectAll<SVGGElement, null>(".x-axis")
       .data([null])
       .join("g")
       .attr("class", "x-axis")
       .attr("transform", `translate(0,${height - margin.bottom})`)
       .call(xAxis);
 
-    svg.selectAll(".y-axis")
+    svg.selectAll<SVGGElement, null>(".y-axis")
       .data([null])
       .join("g")
       .attr("class", "y-axis")
       .attr("transform", `translate(${margin.left},0)`)
       .call(yAxis);
 
-    svg.selectAll("rect")
+    svg.selectAll<SVGRectElement, Species>("rect")
       .data(species)
       .join(
         enter => enter.append("rect")
@@ -101,14 +101,14 @@ const BarChart = ({ species }: { species: Species[] }) => {
       x.range([margin.left, newWidth - margin.right]);
       y.range([newHeight - margin.bottom, margin.top]);
       
-      svg.selectAll(".x-axis")
+      svg.selectAll<SVGGElement, unknown>(".x-axis")
          .attr("transform", `translate(0,${newHeight - margin.bottom})`)
          .call(xAxis);
       
-      svg.selectAll(".y-axis")
+      svg.selectAll<SVGGElement, unknown>(".y-axis")
          .call(yAxis);
       
-      svg.selectAll("rect")
+      svg.selectAll<SVGRectElement, Species>("rect")
          .attr("x", d => x(d.name) || 0)
          .attr("y", d => y(d.count))
          .attr("height", d => y(0) - y(d.count))
@@ -138,6 +138,13 @@ const ScatterPlot = ({ species }: { species: Species[] }) => {
     const width = container.clientWidth;
     const height = Math.min(width * 0.6, 200);
     
+    interface Point {
+      id: string;
+      color: string;
+      x: number;
+      y: number;
+    }
+
     const points = species.flatMap(sp =>
       Array.from({ length: sp.count }, (_, i) => ({
         id: `${sp.id}-${i}`,
@@ -153,14 +160,14 @@ const ScatterPlot = ({ species }: { species: Species[] }) => {
       .style("background", "#f0f0f0")
       .style("border-radius", "4px");
     
-    svg.selectAll("circle")
-      .data(points, d => (d as {id: string}).id)
+    svg.selectAll<SVGCircleElement, Point>("circle")
+      .data(points, d => d.id)
       .join(
         enter => enter.append("circle")
-          .attr("cx", d => (d as any).x)
-          .attr("cy", d => (d as any).y)
+          .attr("cx", d => d.x)
+          .attr("cy", d => d.y)
           .attr("r", 0)
-          .attr("fill", d => (d as any).color)
+          .attr("fill", d => d.color)
           .attr("opacity", 0.8)
           .call(enter => enter.transition().duration(500).attr("r", 5)),
         update => update,
