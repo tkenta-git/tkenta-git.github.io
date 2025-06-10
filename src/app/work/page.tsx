@@ -1,6 +1,6 @@
 export default function Work() {
   return (
-    <main>
+    <main className="work-main">
       <section className="hero">
         <div className="hero-content">
           <h2>Selected Works</h2>
@@ -37,21 +37,6 @@ export default function Work() {
           title="Medical Expenses in Japan"
         ></iframe>
       </section>
-      <section className="card">
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '2rem' }}>
-        <a href="/work/observable" style={{
-          padding: '0.75rem 1.5rem',
-          backgroundColor: '#4C92D9',
-          color: 'white',
-          borderRadius: '4px',
-          textDecoration: 'none',
-          transition: 'background-color 0.3s ease'
-        }}>
-          View Interactive Version
-        </a>
-      </div>
-    </section>
     </main>
-    
   );
 }

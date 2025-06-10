@@ -42,7 +42,7 @@ const BarChart = ({ species }: { species: Species[] }) => {
       .attr("height", height)
       .attr("viewBox", `0 0 ${width} ${height}`);
 
-    const x = d3.scaleBand<string>()
+    const x = d3.scaleBand()
       .domain(species.map(d => d.name))
       .range([margin.left, width - margin.right])
       .padding(0.1);
@@ -52,26 +52,32 @@ const BarChart = ({ species }: { species: Species[] }) => {
       .nice()
       .range([height - margin.bottom, margin.top]);
 
+    const xAxis = (g: d3.Selection<SVGGElement, unknown, null, undefined>) => 
+      g.call(d3.axisBottom(x));
+
+    const yAxis = (g: d3.Selection<SVGGElement, unknown, null, undefined>) => 
+      g.call(d3.axisLeft(y));
+
     svg.selectAll(".x-axis")
       .data([null])
       .join("g")
       .attr("class", "x-axis")
       .attr("transform", `translate(0,${height - margin.bottom})`)
-      .call(d3.axisBottom(x));
+      .call(xAxis);
 
     svg.selectAll(".y-axis")
       .data([null])
       .join("g")
       .attr("class", "y-axis")
       .attr("transform", `translate(${margin.left},0)`)
-      .call(d3.axisLeft(y));
+      .call(yAxis);
 
     svg.selectAll("rect")
-      .data(species, d => (d as Species).id)
+      .data(species)
       .join(
         enter => enter.append("rect")
           .attr("fill", d => d.color)
-          .attr("x", d => x(d.name)!)
+          .attr("x", d => x(d.name) || 0)
           .attr("y", y(0))
           .attr("height", 0)
           .attr("width", x.bandwidth()),
@@ -80,7 +86,7 @@ const BarChart = ({ species }: { species: Species[] }) => {
       )
       .transition()
       .duration(500)
-      .attr("x", d => x(d.name)!)
+      .attr("x", d => x(d.name) || 0)
       .attr("y", d => y(d.count))
       .attr("height", d => y(0) - y(d.count))
       .attr("width", x.bandwidth());
@@ -97,13 +103,13 @@ const BarChart = ({ species }: { species: Species[] }) => {
       
       svg.selectAll(".x-axis")
          .attr("transform", `translate(0,${newHeight - margin.bottom})`)
-         .call(d3.axisBottom(x));
+         .call(xAxis);
       
       svg.selectAll(".y-axis")
-         .call(d3.axisLeft(y));
+         .call(yAxis);
       
       svg.selectAll("rect")
-         .attr("x", d => x(d.name)!)
+         .attr("x", d => x(d.name) || 0)
          .attr("y", d => y(d.count))
          .attr("height", d => y(0) - y(d.count))
          .attr("width", x.bandwidth());
@@ -151,10 +157,10 @@ const ScatterPlot = ({ species }: { species: Species[] }) => {
       .data(points, d => (d as {id: string}).id)
       .join(
         enter => enter.append("circle")
-          .attr("cx", d => d.x)
-          .attr("cy", d => d.y)
+          .attr("cx", d => (d as any).x)
+          .attr("cy", d => (d as any).y)
           .attr("r", 0)
-          .attr("fill", d => d.color)
+          .attr("fill", d => (d as any).color)
           .attr("opacity", 0.8)
           .call(enter => enter.transition().duration(500).attr("r", 5)),
         update => update,
@@ -242,13 +248,14 @@ export default function ShannonVisualizerPage() {
       flex: 1,
       minWidth: '280px',
       '@media (min-width: 768px)': {
-        maxWidth: '400px'
+        maxWidth: '320px'
       }
     },
     visuals: { 
       flex: 1,
       '@media (min-width: 768px)': {
-        flex: 2
+        flex: 2,
+        marginLeft: '2rem'
       }
     },
     controlGroup: { 
@@ -265,23 +272,7 @@ export default function ShannonVisualizerPage() {
       borderRadius: '2px',
       outline: 'none',
       opacity: '0.7',
-      transition: 'opacity .2s',
-      '&::-webkit-slider-thumb': {
-        WebkitAppearance: 'none',
-        width: '12px',
-        height: '12px',
-        background: '#666',
-        borderRadius: '50%',
-        cursor: 'pointer'
-      },
-      '&::-moz-range-thumb': {
-        width: '12px',
-        height: '12px',
-        background: '#666',
-        borderRadius: '50%',
-        cursor: 'pointer',
-        border: 'none'
-      }
+      transition: 'opacity .2s'
     },
     result: { 
       background: '#f0f0f0', 
@@ -334,11 +325,11 @@ export default function ShannonVisualizerPage() {
   };
 
   return (
-    <div style={styles.container as React.CSSProperties}>
-      <div style={styles.controls as React.CSSProperties}>
+    <div className="shannon-main">
+      <div className="shannon-controls">
         <h2>操作パネル</h2>
         <button 
-          style={styles.addButton as React.CSSProperties}
+          className="shannon-add-button"
           onClick={addSpecies}
           disabled={species.length >= INITIAL_COLORS.length}
         >
@@ -348,42 +339,43 @@ export default function ShannonVisualizerPage() {
           新しい種を追加
         </button>
         {species.map(sp => (
-          <div key={sp.id} style={styles.controlGroup}>
-            <label style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-              <div style={{width: '12px', height: '12px', background: sp.color, borderRadius: '50%'}} />
-              {sp.name}: <strong>{sp.count}</strong>
-              <button 
-                style={styles.removeButton as React.CSSProperties}
+          <div key={sp.id} className="shannon-control-group">
+            <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+            <div style={{width: '12px', height: '12px', background: sp.color, borderRadius: '50%'}} />
+            <span>{sp.name}: <strong>{sp.count}</strong></span>
+            <button 
+                className="shannon-remove-button"
                 onClick={() => removeSpecies(sp.id)}
                 disabled={species.length <= 1}
-              >
+                type="button"
+            >
                 削除
-              </button>
-            </label>
+            </button>
+            </div>
             <input
               type="range"
               min="0"
               max="100"
               value={sp.count}
               onChange={(e) => handleCountChange(sp.id, parseInt(e.target.value, 10))}
-              style={styles.slider as React.CSSProperties}
+              className="shannon-slider"
             />
           </div>
         ))}
-        <div style={styles.result}>
+        <div className="shannon-result">
           <h3>計算結果</h3>
           <p>シャノン指数 (H'): {h.toFixed(3)}</p>
           <p>均等度 (J'): {j.toFixed(3)}</p>
         </div>
       </div>
-
-      <div style={styles.visuals as React.CSSProperties}>
+  
+      <div className="shannon-visuals">
         <h2>可視化エリア</h2>
-        <div style={styles.visBlock}>
+        <div className="shannon-vis-block">
           <h3>各種の個体数 (Bar Chart)</h3>
           <BarChart species={species} />
         </div>
-        <div style={styles.visBlock}>
+        <div className="shannon-vis-block">
           <h3>個体分布 (Scatter Plot)</h3>
           <ScatterPlot species={species} />
         </div>
