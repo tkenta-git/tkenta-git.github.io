@@ -27,6 +27,7 @@ export default function Home() {
         <div 
           style={{ position: 'relative', width: '100%', maxWidth: '90wh', margin: '0 auto', borderRadius: '0px', overflow: 'hidden' }}
         >
+          {/* Link to Observable notebook with hover effect */}
           <a
             href="/work/observable"
             style={{
@@ -64,41 +65,26 @@ export default function Home() {
                 transition: 'opacity 0.3s ease',
                 display: 'flex',
                 alignItems: 'left',
-                justifyContent: 'center',
+                justifyContent: 'left',
                 zIndex: 2,
                 borderRadius: '0px',
+                padding: '1rem',  // padding
               }}
             >
+              {/* Try it out text with arrow icon */}
               <div
                 style={{
                   display: 'flex',
                   alignItems: 'left',
                   gap: '1rem',
                   color: 'white',
-                  fontSize: '2rem',
+                  fontSize: '10rem',
                   fontWeight: 400,
-                  letterSpacing: '0.05em',
+                  letterSpacing: '0.00em',
+                  padding: '3rem 0 0 -3rem', // Added padding for left and top
                 }}
               >
                 Try it out
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  style={{ transform: 'rotate(90deg)' }}
-                >
-                  <path
-                    d="M5 19V5h14"
-                    stroke="white"
-                    strokeWidth="1"
-                    fill="none"
-                  />
-                  <path
-                    d="M19 5L5 19"
-                    stroke="white"
-                    strokeWidth="2"
-                  />
-                </svg>
               </div>
             </div>
           </a>
@@ -160,6 +146,69 @@ export default function Home() {
           frameBorder="0"
           title="Medical Expenses in Japan"
         ></iframe>
+      </section>
+
+{/* --- Contact Form Section --- */}
+<section id="contact" className="notebook-container" style={{ maxWidth: '100vw', margin: '0 auto', padding: '1rem 0' }}>
+        <ProjectHeader 
+          title="Contact"
+          date=""
+          description="Feel free to reach out to me for any inquiries or collaborations."
+        />
+        {/* ▼▼▼ この部分を修正 ▼▼▼ */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '1rem', // ラベルとフォームの間のスペース
+          padding: '2rem 0',
+          flexWrap: 'wrap' // スマホ表示などで折り返すように
+        }}>
+          {/* 「Wanna contact?」のラベル */}
+          <span style={{ fontSize: '1.1rem' }}>Let's talk</span>
+
+          {/* フォーム部分のコンテナ */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            border: '1px solid #111111',
+            borderRadius: '50px', // 角を丸くしてカプセル型に
+            overflow: 'hidden',   // はみ出した部分を隠す
+            backgroundColor: '#fff',
+            maxWidth: '100%'
+          }}>
+            {/* メールアドレス表示部分 */}
+            <span style={{
+              padding: '0.75rem 1.5rem',
+              fontSize: '1rem',
+              color: '#333',
+              whiteSpace: 'nowrap', // 折り返さないように
+              overflow: 'hidden',
+              textOverflow: 'ellipsis' // はみ出したら...で表示
+            }}>
+              tb1.kenta-research@outlook.com
+            </span>
+            
+            {/* 「contact」ボタン部分 */}
+            <a 
+              href="mailto:tb1.kenta-research@outlook.com"
+              style={{
+                padding: '0.75rem 1.5rem',
+                backgroundColor: '#e0e0e0', // スクショに近いグレー
+                color: '#000',
+                textDecoration: 'none',
+                fontSize: '1rem',
+                fontWeight: '500',
+                transition: 'background-color 0.3s ease'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#cccccc'} // ホバー時少し濃くする
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#e0e0e0'}
+            >
+              contact
+            </a>
+          </div>
+        </div>
+        {/* ▲▲▲ ここまで ▲▲▲ */}
       </section>
 
     </main>

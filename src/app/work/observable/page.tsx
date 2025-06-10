@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import styles from './page.module.css';
 
 // --- 型定義 ---
 interface Species {
@@ -29,98 +30,59 @@ const BarChart = ({ species }: { species: Species[] }) => {
 
     const container = containerRef.current;
     const width = container.clientWidth;
-    const height = Math.min(width * 0.6, 200);
-    const margin = { 
-      top: 20, 
-      right: 20, 
-      bottom: 30, 
-      left: 40 
-    };
+    const height = Math.min(width * 0.6, 300);
+    const margin = { top: 20, right: 20, bottom: 40, left: 50 };
 
-    const svg = d3.select(ref.current)
-      .attr("width", width)
-      .attr("height", height)
-      .attr("viewBox", `0 0 ${width} ${height}`);
+    const svg = d3.select(ref.current).attr("width", width).attr("height", height);
+    svg.selectAll("*").remove(); 
+
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
 
     const x = d3.scaleBand()
       .domain(species.map(d => d.name))
-      .range([margin.left, width - margin.right])
-      .padding(0.1);
+      .range([0, innerWidth])
+      .padding(0.2);
     
     const y = d3.scaleLinear()
       .domain([0, 100])
       .nice()
-      .range([height - margin.bottom, margin.top]);
+      .range([innerHeight, 0]);
 
-    const xAxis = (g: d3.Selection<SVGGElement, unknown, SVGElement, unknown>) => 
-      g.call(d3.axisBottom(x));
-
-    const yAxis = (g: d3.Selection<SVGGElement, unknown, SVGElement, unknown>) => 
-      g.call(d3.axisLeft(y));
-
-    svg.selectAll<SVGGElement, null>(".x-axis")
-      .data([null])
-      .join("g")
+    g.append("g")
       .attr("class", "x-axis")
-      .attr("transform", `translate(0,${height - margin.bottom})`)
-      .call(xAxis);
+      .attr("transform", `translate(0,${innerHeight})`)
+      .call(d3.axisBottom(x))
+      .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", ".15em")
+      .attr("transform", "rotate(-45)");
 
-    svg.selectAll<SVGGElement, null>(".y-axis")
-      .data([null])
-      .join("g")
+    g.append("g")
       .attr("class", "y-axis")
-      .attr("transform", `translate(${margin.left},0)`)
-      .call(yAxis);
+      .call(d3.axisLeft(y).ticks(5));
 
-    svg.selectAll<SVGRectElement, Species>("rect")
+    g.selectAll(".bar")
       .data(species)
-      .join(
-        enter => enter.append("rect")
-          .attr("fill", d => d.color)
-          .attr("x", d => x(d.name) || 0)
-          .attr("y", y(0))
-          .attr("height", 0)
-          .attr("width", x.bandwidth()),
-        update => update,
-        exit => exit.remove()
-      )
-      .transition()
-      .duration(500)
+      .join("rect")
+      .attr("class", "bar")
+      .attr("fill", d => d.color)
       .attr("x", d => x(d.name) || 0)
+      .attr("width", x.bandwidth())
+      .attr("y", y(0))
+      .attr("height", 0)
+      .transition()
+      .duration(750)
       .attr("y", d => y(d.count))
-      .attr("height", d => y(0) - y(d.count))
-      .attr("width", x.bandwidth());
-
-    const handleResize = () => {
-      const newWidth = container.clientWidth;
-      const newHeight = Math.min(newWidth * 0.6, 200);
+      .attr("height", d => innerHeight - y(d.count));
       
-      svg.attr("width", newWidth)
-         .attr("height", newHeight);
-      
-      x.range([margin.left, newWidth - margin.right]);
-      y.range([newHeight - margin.bottom, margin.top]);
-      
-      svg.selectAll<SVGGElement, unknown>(".x-axis")
-         .attr("transform", `translate(0,${newHeight - margin.bottom})`)
-         .call(xAxis);
-      
-      svg.selectAll<SVGGElement, unknown>(".y-axis")
-         .call(yAxis);
-      
-      svg.selectAll<SVGRectElement, Species>("rect")
-         .attr("x", d => x(d.name) || 0)
-         .attr("y", d => y(d.count))
-         .attr("height", d => y(0) - y(d.count))
-         .attr("width", x.bandwidth());
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, [species]);
 
   return (
-    <div ref={containerRef} style={{ width: '100%' }}>
+    <div ref={containerRef} style={{ width: '100%', minHeight: '300px' }}>
       <svg ref={ref} style={{ maxWidth: '100%' }} />
     </div>
   );
@@ -136,29 +98,17 @@ const ScatterPlot = ({ species }: { species: Species[] }) => {
 
     const container = containerRef.current;
     const width = container.clientWidth;
-    const height = Math.min(width * 0.6, 200);
+    const height = Math.min(width * 0.6, 300);
     
-    interface Point {
-      id: string;
-      color: string;
-      x: number;
-      y: number;
-    }
+    interface Point { id: string; color: string; x: number; y: number; }
 
     const points = species.flatMap(sp =>
       Array.from({ length: sp.count }, (_, i) => ({
-        id: `${sp.id}-${i}`,
-        color: sp.color,
-        x: Math.random() * width,
-        y: Math.random() * height
+        id: `${sp.id}-${i}`, color: sp.color, x: Math.random() * width, y: Math.random() * height
       }))
     );
     
-    const svg = d3.select(ref.current)
-      .attr("width", width)
-      .attr("height", height)
-      .style("background", "#f0f0f0")
-      .style("border-radius", "4px");
+    const svg = d3.select(ref.current).attr("width", width).attr("height", height);
     
     svg.selectAll<SVGCircleElement, Point>("circle")
       .data(points, d => d.id)
@@ -168,30 +118,21 @@ const ScatterPlot = ({ species }: { species: Species[] }) => {
           .attr("cy", d => d.y)
           .attr("r", 0)
           .attr("fill", d => d.color)
-          .attr("opacity", 0.8)
+          .attr("opacity", 0.7)
           .call(enter => enter.transition().duration(500).attr("r", 5)),
         update => update,
         exit => exit.transition().duration(500).attr("r", 0).remove()
       );
-
-    const handleResize = () => {
-      const newWidth = container.clientWidth;
-      const newHeight = Math.min(newWidth * 0.6, 200);
-      
-      svg.attr("width", newWidth)
-         .attr("height", newHeight);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, [species]);
 
   return (
-    <div ref={containerRef} style={{ width: '100%' }}>
-      <svg ref={ref} style={{ maxWidth: '100%' }} />
+    <div ref={containerRef} style={{ width: '100%', minHeight: '300px' }}>
+      {/* ↓↓↓ style属性をclassNameに変更 ↓↓↓ */}
+      <svg ref={ref} className={styles.scatterPlotSvg} />
     </div>
   );
 };
+
 
 // --- 親コンポーネント: ページ全体 ---
 export default function ShannonVisualizerPage() {
@@ -202,7 +143,7 @@ export default function ShannonVisualizerPage() {
   };
 
   const addSpecies = () => {
-    const newId = Math.max(...species.map(sp => sp.id)) + 1;
+    const newId = (species.length > 0 ? Math.max(...species.map(sp => sp.id)) : 0) + 1;
     const newColor = INITIAL_COLORS[species.length % INITIAL_COLORS.length];
     setSpecies([...species, {
       id: newId,
@@ -237,127 +178,33 @@ export default function ShannonVisualizerPage() {
 
   const { h, j } = calculateShannonIndex();
 
-  const styles = {
-    container: { 
-      display: 'flex', 
-      flexDirection: 'column',
-      gap: '2rem', 
-      padding: '1.5rem',
-      fontFamily: 'sans-serif',
-      maxWidth: '1200px',
-      margin: '0 auto',
-      '@media (min-width: 768px)': {
-        flexDirection: 'row',
-        padding: '2.5rem'
-      }
-    },
-    controls: { 
-      flex: 1,
-      minWidth: '280px',
-      '@media (min-width: 768px)': {
-        maxWidth: '320px'
-      }
-    },
-    visuals: { 
-      flex: 1,
-      '@media (min-width: 768px)': {
-        flex: 2,
-        marginLeft: '2rem'
-      }
-    },
-    controlGroup: { 
-      marginBottom: '1rem',
-      background: '#f3f3f3',
-      padding: '0.75rem',
-      borderRadius: '8px'
-    },
-    slider: { 
-      width: '100%',
-      height: '4px',
-      WebkitAppearance: 'none',
-      background: '#ddd',
-      borderRadius: '2px',
-      outline: 'none',
-      opacity: '0.7',
-      transition: 'opacity .2s'
-    },
-    result: { 
-      background: '#f0f0f0', 
-      padding: '1.25rem', 
-      borderRadius: '8px',
-      marginTop: '1rem'
-    },
-    visBlock: { 
-      marginBottom: '2rem'
-    },
-    addButton: {
-      width: '100%',
-      padding: '0.75rem',
-      background: 'transparent',
-      color: '#111111',
-      border: '2px solid #111111',
-      borderRadius: '4px',
-      cursor: 'pointer',
-      marginBottom: '1rem',
-      transition: 'all 0.2s ease',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '0.5rem',
-      fontSize: '0.95rem',
-      fontWeight: 500,
-      '&:hover': {
-        background: '#111111',
-        color: 'white'
-      },
-      '&:disabled': {
-        opacity: 0.6,
-        cursor: 'not-allowed'
-      }
-    },
-    removeButton: {
-      padding: '0.25rem 0.5rem',
-      background: '#ff4444',
-      color: 'white',
-      border: 'none',
-      borderRadius: '4px',
-      cursor: 'pointer',
-      marginLeft: '1rem',
-      fontSize: '0.8rem',
-      '&:disabled': {
-        opacity: 0.6,
-        cursor: 'not-allowed'
-      }
-    }
-  };
-
   return (
-    <div className="shannon-main">
-      <div className="shannon-controls">
+    <div className={styles.main}>
+      <div className={styles.controls}>
         <h2>操作パネル</h2>
         <button 
-          className="shannon-add-button"
+          className={styles.addButton}
           onClick={addSpecies}
           disabled={species.length >= INITIAL_COLORS.length}
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 1V15M1 8H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ stroke: 'currentColor' }}>
+            <path d="M8 1V15M1 8H15" strokeWidth="2" strokeLinecap="round"/>
           </svg>
           新しい種を追加
         </button>
         {species.map(sp => (
-          <div key={sp.id} className="shannon-control-group">
+          <div key={sp.id} className={styles.controlGroup}>
             <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-            <div style={{width: '12px', height: '12px', background: sp.color, borderRadius: '50%'}} />
-            <span>{sp.name}: <strong>{sp.count}</strong></span>
-            <button 
-                className="shannon-remove-button"
-                onClick={() => removeSpecies(sp.id)}
-                disabled={species.length <= 1}
-                type="button"
-            >
-                削除
-            </button>
+              <div style={{width: '12px', height: '12px', background: sp.color, borderRadius: '50%'}} />
+              <span>{sp.name}: <strong>{sp.count}</strong></span>
+              <button 
+                  className={styles.removeButton}
+                  onClick={() => removeSpecies(sp.id)}
+                  disabled={species.length <= 1}
+                  type="button"
+              >
+                  削除
+              </button>
             </div>
             <input
               type="range"
@@ -365,25 +212,24 @@ export default function ShannonVisualizerPage() {
               max="100"
               value={sp.count}
               onChange={(e) => handleCountChange(sp.id, parseInt(e.target.value, 10))}
-              className="shannon-slider"
+              className={styles.slider}
             />
           </div>
         ))}
-        <div className="shannon-result">
+        <div className={styles.result}>
           <h3>計算結果</h3>
           <p>シャノン指数 (H'): {h.toFixed(3)}</p>
           <p>均等度 (J'): {j.toFixed(3)}</p>
         </div>
       </div>
   
-      <div className="shannon-visuals">
-        <h2>可視化エリア</h2>
-        <div className="shannon-vis-block">
-          <h3>各種の個体数 (Bar Chart)</h3>
+      <div className={styles.visuals}>
+        <div className={styles.visBlock}>
+          <h3>各種の個体数</h3>
           <BarChart species={species} />
         </div>
-        <div className="shannon-vis-block">
-          <h3>個体分布 (Scatter Plot)</h3>
+        <div className={styles.visBlock}>
+          <h3>個体分布</h3>
           <ScatterPlot species={species} />
         </div>
       </div>
