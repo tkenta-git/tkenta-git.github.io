@@ -1,4 +1,7 @@
+// src/app/page.tsx
 'use client';
+
+import ProjectHeader from '../components/ProjectHeader'; // ProjectHeaderをインポート
 
 export default function Home() {
   return (
@@ -11,26 +14,16 @@ export default function Home() {
           <p className="role">Born and raised in Japan.</p>
         </div>
       </section>
-      {/* --- 可視化エリア 新デザイン --- */}
+
+      {/* --- 可視化エリア 新デザイン (Shannon Diversity Index) --- */}
       <section className="notebook-container" style={{ maxWidth: '100vw', margin: '0 auto', padding: '1rem 0' }}>
-        {/* 区切り線 */}
-        <div style={{ 
-          borderTop: '2px solid #111', 
-          width: '100%', 
-          maxWidth: '100vw',
-          margin: '0 auto 1.5rem auto'
-        }} />
-        {/* タイトル・説明・日付 */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          {/* 新しいFlexboxコンテナ */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 700, margin: 0, textAlign: 'left' }}>Shannon Diversity Index Calculator & Visualizer</h2>
-            <div style={{ fontSize: '1rem', color: '#000' }}>Jun 2025</div>
-          </div>
-          {/* 3行目の要素はそのまま */}
-          <div style={{ fontSize: '1.1rem', color: '#000', margin: '0.5rem 0 0.2rem 0', textAlign:"left" }}>This program is a Shannon Diversity Index Calculator & Visualizer, designed within a reactive JavaScript notebook environment. It facilitates data exploration and the creation of interactive data visualizations. The platform provides a collaborative space for visual data analysis and dashboard development, offering extensive resources for users.</div>
-        </div>
-        {/* gif + hover overlay */}
+        {/* 既存のProjectHeaderと同じ内容をPropsとして渡す */}
+        <ProjectHeader
+          title="Shannon Diversity Index Calculator & Visualizer"
+          date="Jun 2025"
+          description="This program is a Shannon Diversity Index Calculator & Visualizer, designed within a reactive JavaScript notebook environment. It facilitates data exploration and the creation of interactive data visualizations. The platform provides a collaborative space for visual data analysis and dashboard development, offering extensive resources for users."
+        />
+        {/* gif + hover overlay の部分はそのまま残す */}
         <div 
           style={{ position: 'relative', width: '100%', maxWidth: '90wh', margin: '0 auto', borderRadius: '0px', overflow: 'hidden' }}
         >
@@ -70,7 +63,7 @@ export default function Home() {
                 opacity: 0,
                 transition: 'opacity 0.3s ease',
                 display: 'flex',
-                alignItems: 'center',
+                alignItems: 'left',
                 justifyContent: 'center',
                 zIndex: 2,
                 borderRadius: '0px',
@@ -82,8 +75,8 @@ export default function Home() {
                   alignItems: 'left',
                   gap: '1rem',
                   color: 'white',
-                  fontSize: '1.7rem',
-                  fontWeight: 600,
+                  fontSize: '2rem',
+                  fontWeight: 400,
                   letterSpacing: '0.05em',
                 }}
               >
@@ -92,12 +85,12 @@ export default function Home() {
                   width="28"
                   height="28"
                   viewBox="0 0 24 24"
-                  style={{ transform: 'rotate(45deg)' }}
+                  style={{ transform: 'rotate(90deg)' }}
                 >
                   <path
                     d="M5 19V5h14"
                     stroke="white"
-                    strokeWidth="2"
+                    strokeWidth="1"
                     fill="none"
                   />
                   <path
@@ -117,7 +110,13 @@ export default function Home() {
         `}</style>
       </section>
 
-      <section id="notebook-cycling" className="notebook-container">
+      {/* --- Cycling Project Section --- */}
+      <section id="notebook-cycling" className="notebook-container" style={{ maxWidth: '100vw', margin: '0 auto', padding: '1rem 0' }}>
+        <ProjectHeader
+          title="SFC Hello Cycling Data Analysis"
+          date="May 2025"
+          description="This project analyzes cycling data from SFC Hello Cycling, offering insights into usage patterns and trends through interactive visualizations within an Observable notebook."
+        />
         <iframe
           src="https://observablehq.com/embed/@kenta-tanaka/sfc-hello-cycling"
           width="100%"
@@ -129,7 +128,13 @@ export default function Home() {
         <div id="obs-medical"></div>
       </section>
 
-      <section id="notebook-shannon" className="notebook-container">
+      {/* --- Shannon Diversity Index (Embedded) Section --- */}
+      <section id="notebook-shannon" className="notebook-container" style={{ maxWidth: '100vw', margin: '0 auto', padding: '1rem 0' }}>
+        <ProjectHeader
+          title="Shannon Diversity Index Calculator & Visualizer (Embedded)"
+          date="Jun 2025"
+          description="This is an embedded version of the Shannon Diversity Index Calculator & Visualizer, demonstrating its interactive features directly within the page."
+        />
         <iframe
           src="https://observablehq.com/embed/@kenta-tanaka/shannon-diversity-index-calculator-visualizer"
           width="100%"
@@ -140,7 +145,13 @@ export default function Home() {
         ></iframe>
       </section>
 
-      <section id="notebook" style={{ maxWidth: '900px', margin: '3rem auto' }}>
+      {/* --- Medical Expenses in Japan Section --- */}
+      <section id="notebook" className="notebook-container" style={{ maxWidth: '100vw', margin: '0 auto', padding: '1rem 0' }}>
+        <ProjectHeader
+          title="Medical Expenses in Japan Analysis"
+          date="Apr 2025"
+          description="An Observable notebook that provides a detailed analysis and visualization of medical expenses in Japan, exploring trends and key factors."
+        />
         <iframe
           src="https://observablehq.com/embed/@kenta-tanaka/medical-expences-in-japan"
           width="100%"
