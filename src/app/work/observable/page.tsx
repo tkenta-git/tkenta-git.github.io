@@ -189,7 +189,6 @@ export default function ShannonVisualizerPage() {
     <div className={styles.pageContainer} style={{ width: '90vw', margin: '0 auto' }}>
       <ProjectHeader
         title="Shannon Diversity Index"
-        subtitle="Interactive Visualization"
         description="An interactive tool to understand the concept of biodiversity through the Shannon Diversity Index. Adjust species populations and observe how diversity and evenness change in real-time."
       />
       
