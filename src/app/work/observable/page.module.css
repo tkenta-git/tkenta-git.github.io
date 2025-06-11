@@ -1,148 +1,171 @@
+/*
+ * src/app/work/observable/page.module.css
+ * D3ビジュアライゼーションページのスタイル
+ */
+
+ .pageContainer {
+  width: 100%;
+}
+
 .main {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 1.5rem;
-    font-family: sans-serif; /* フォントを元に戻す */
-    max-width: 1200px;
-    margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem;
+  font-family: sans-serif; /* フォントを元に戻す */
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+@media (min-width: 768px) {
+  .main {
+    flex-direction: row;
+    padding: 2.5rem;
   }
-  
-  @media (min-width: 768px) {
-    .main {
-      flex-direction: row;
-      padding: 2.5rem;
-    }
-  }
-  
+}
+
+.controls {
+  flex: 1;
+  min-width: 280px;
+}
+
+@media (min-width: 768px) {
   .controls {
-    flex: 1;
-    min-width: 280px;
+    max-width: 320px;
   }
-  
-  @media (min-width: 768px) {
-    .controls {
-      max-width: 320px;
-    }
-  }
-  
-  .visuals {
-    flex: 2;
-    min-width: 0;
-  }
-  
-  .controlGroup {
-    margin-bottom: 1rem;
-    background: #f3f3f3; /* 背景色を元に戻す */
-    padding: 0.75rem;
-    border-radius: 8px;
-  }
-  
-  /* スライダーのスタイルを元に合わせて調整 */
-  .slider {
-    width: 100%;
-    height: 4px;
-    margin-top: 0.75rem;
-    -webkit-appearance: none;
-    background: #ddd;
-    border-radius: 2px;
-    outline: none;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-    cursor: pointer;
-  }
-  .slider:hover {
-    opacity: 1;
-  }
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    background: #4C92D9;
-    cursor: pointer;
-    border-radius: 50%;
-  }
-  .slider::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    background: #4C92D9;
-    cursor: pointer;
-    border-radius: 50%;
-  }
-  
-  
-  .result {
-    background: #f0f0f0; /* 背景色を元に戻す */
-    padding: 1.25rem;
-    border-radius: 8px;
-    margin-top: 1rem;
-  }
-  
-  .result h3 {
-    margin-top: 0;
-  }
-  
-  .visBlock {
-    margin-bottom: 2rem;
-  }
-  
-  .visBlock h3 {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-  
-  /* 追加ボタンのスタイルを完全に戻す */
-  .addButton {
-    width: 100%;
-    padding: 0.75rem;
-    background: transparent;
-    color: #111111;
-    border: 2px solid #111111;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 1rem;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-  }
-  
-  .addButton:hover:not(:disabled) {
-    background: #111111;
-    color: white;
-  }
-  
-  .addButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-  
-  
-  /* 削除ボタンのスタイルを元に戻す */
-  .removeButton {
-    padding: 0.25rem 0.5rem;
-    background: #ff4444;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: auto;
-    font-size: 0.8rem;
-  }
-  
-  .removeButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-  
-  /* 散布図SVG用のスタイルを追加 */
-  .scatterPlotSvg {
-    max-width: 100%;
-    background: #f0f0f0;
-    border-radius: 4px;
-  }
+}
+
+.visuals {
+  flex: 2;
+  min-width: 0;
+}
+
+.controlGroup {
+  margin-bottom: 1rem;
+  background: #f3f3f3; /* 背景色を元に戻す */
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+/* スライダーのスタイルを元に合わせて調整 */
+.slider {
+  width: 100%;
+  height: 4px;
+  margin-top: 0.75rem;
+  -webkit-appearance: none;
+  background: #ddd;
+  border-radius: 2px;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+.slider:hover {
+  opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #4C92D9;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #4C92D9;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+
+.result {
+  background: #f0f0f0; /* 背景色を元に戻す */
+  padding: 1.25rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.result h3 {
+  margin-top: 0;
+}
+
+.visBlock {
+  margin-bottom: 2rem;
+}
+
+.visBlock h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* 追加ボタンのスタイルを完全に戻す */
+.addButton {
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  color: #111111;
+  border: 2px solid #111111;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.addButton:hover:not(:disabled) {
+  background: #111111;
+  color: white;
+}
+
+.addButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* 削除ボタンのスタイルを元に戻す */
+.removeButton {
+  padding: 0.25rem 0.5rem;
+  background: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+  font-size: 0.8rem;
+}
+
+.removeButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 散布図SVG用のスタイルを追加 */
+.scatterPlotSvg {
+  max-width: 100%;
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+/* 軸のスタイル */
+.xAxis path,
+.xAxis line,
+.yAxis path,
+.yAxis line {
+  stroke: #ccc;
+}
+
+.xAxis text,
+.yAxis text {
+  fill: #555;
+  font-size: 0.8rem;
+}
