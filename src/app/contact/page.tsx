@@ -1,3 +1,4 @@
+"use client"; // この行を追加
 // App.tsx または任意のコンポーネントファイル
 
 import React from 'react';
