@@ -1,85 +1,163 @@
 /*
  * src/components/ProjectDescription.module.css
  * ProjectDescriptionコンポーネント用のスタイル
+ * 
+ * UI Guidelines:
+ * 1. Typography
+ *   - Font family: -apple-system, BlinkMacSystemFont等のシステムフォントを使用
+ *   - Base color: #333 (本文), #222 (見出し)
+ *   - Font sizes:
+ *     - 見出し大: 1.5rem (24px)
+ *     - 見出し中: 1.25rem (20px) 
+ *     - 本文: 0.9rem (14.4px)
+ *   - Line height: 1.5-1.8
+ *   - Font weight: 500 (regular), 700 (bold)
+ * 
+ * 2. Layout
+ *   - Max width: 1200px
+ *   - Padding: 1rem (sides)
+ *   - Grid: 1fr 3fr (desktop)
+ *   - Gap: 2.5-3rem
+ *   - Margins: 1.5rem (vertical)
+ * 
+ * 3. Colors
+ *   - Background: #fff (main), #f5f5f5 (secondary)
+ *   - Text: #333 (main), #444 (body), #666 (muted)
+ *   - Border: #ddd
+ *   - Hover: #f8f8f8, #ccc
+ * 
+ * 4. Components
+ *   - Border radius: 8px (buttons), 20px (tags)
+ *   - Transitions: 0.3s ease
+ *   - Shadows: none (flat design)
+ * 
+ * 5. Responsive
+ *   - Breakpoint: 768px
+ *   - Single column layout
+ *   - Reduced font sizes
+ *   - Adjusted spacing
  */
 
- .container {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    color: #333;
-    margin: 4rem auto;
-    max-width: 1200px; /* Adjust max-width as needed */
-    padding: 0 1rem;
+.container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  color: #333;
+  margin: 4rem auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+  margin: 1.5rem 0;
+  transition: background-color 0.3s ease;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.toggleButton {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  margin: 1.5rem 0;
+}
+
+.toggleButton:hover {
+  background: #f8f8f8;
+  border-color: #ccc;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 3rem;
+  margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .divider {
-    border: none;
-    height: 2px;
-    background-color: #000;
-    margin: 1.5rem 0;
-  }
-  
-  .title {
-    font-size: 1.25rem; /* 20px */
-    font-weight: 500;
-    margin: 0;
-    padding: 0;
-    line-height: 1.5;
-  }
-  
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.keywordsSection .sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.75rem;
+}
+
+.detailsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.keywordList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 2;
+}
+
+.keywordList li {
+  display: inline-block;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+  padding: 0.25rem 0.75rem;
+  background: #f5f5f5;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.sectionContent {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.8;
+  margin: 0;
+  color: #444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .contentGrid {
-    display: grid;
-    grid-template-columns: 1fr 3fr; /* 1:3 ratio for columns */
-    gap: 3rem; /* Space between columns */
-    margin-top: 2rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
-  
+
+  .title {
+    font-size: 1.125rem;
+  }
+
   .sectionTitle {
-    font-size: 1.5rem; /* 24px */
-    font-weight: 700; /* Bold */
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
   }
-  
-  .keywordsSection .sectionTitle {
-      font-size: 1.5rem; /* 24px */
-      font-weight: 700; /* Bold */
-      margin-bottom: 1.75rem;
-  }
-  
-  .detailsSection {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem; /* Space between background and objective */
-  }
-  
-  .keywordList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 1rem; /* 16px */
-    font-weight: 500;
-    line-height: 2;
-  }
-  
-  .sectionContent {
-    font-size: 0.9rem; /* 14.4px */
-    font-weight: 500;
-    line-height: 1.8;
-    margin: 0;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .contentGrid {
-      grid-template-columns: 1fr; /* Stack columns on smaller screens */
-      gap: 2rem;
-    }
-  
-    .title {
-      font-size: 1.125rem; /* 18px */
-    }
-  
-    .sectionTitle {
-      font-size: 1.25rem; /* 20px */
-    }
-  }
-  
+}

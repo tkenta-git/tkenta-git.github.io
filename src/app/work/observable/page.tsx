@@ -180,13 +180,14 @@ export default function ShannonVisualizerPage() {
 
   const projectInfo = {
     title: "Shannon Diversity Index Calculator & Visualizer",
-    keywords: ["指数の可視化", "情報理論", "熟達"],
+    keywords: ["指数の可視化", "情報理論", "都市開発"],
     background: "情報理論の考案者であり「情報理論の父」と呼ばれた、クロード・シャノンが情報の不確実性や情報量を定量化するために提案した「エントロピー」の概念が基になって生まれたシャノン多様性指数(Shannon Diversity Index)。だが現在は生態学、環境評価、微生物学、社会学、経済学・ビジネス、都市開発など様々な領域で活用されている。この指数の視覚情報とインタラクティブ性を伴う理解が必要であると考えられ、制作に至った。",
     objective: "既存の応用事例に対する理解、さらなる分野への応用の可能性を開くことを目的としている。"
   };
 
   return (
     <div className={styles.pageContainer} style={{ width: '90vw', margin: '0 auto' }}>
+      
       <ProjectHeader
         title="Shannon Diversity Index"
         date='Jun 2025'

@@ -66,12 +66,12 @@ export default function About() {
           <ul className="list-en">
             <li>Keio University</li>
             <li>Bachelor of Arts in Environment and Information Studies</li>
-            <li>Apr. 2023 - Present (Mar. 2027)</li>
+            <li>Apr. 2023 - Present</li>
           </ul>
           <ul className="list-ja">
             <li>慶應義塾大学</li>
             <li>環境情報学部3年</li>
-            <li>2023年4月ー2027年3月卒業予定</li>
+            <li>2023年4月ー現在</li>
           </ul>
         </div>
       </section>
@@ -98,10 +98,28 @@ export default function About() {
           <ul className="list-ja">
             <li>HTML</li>
             <li>CSS</li>
+            <li>TypeScript</li>
             <li>JavaScript</li>
             <li>Python</li>
             <li>R</li>
             <li>MySQL</li>
+          </ul>
+          <div className="label"></div>
+          <ul className="list-en">
+            <li>Framework</li>
+          </ul>
+          <ul className="list-ja">
+            <li>React</li>
+            <li>Next.js</li>
+            <li>Node.js</li>
+          </ul>
+          <div className="label"></div>
+          <ul className="list-en">
+            <li>Libraries</li>
+          </ul>
+          <ul className="list-ja">
+            <li>D3.js</li>
+            <li>Observable Plot</li>
           </ul>
         </div>
       </section>

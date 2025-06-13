@@ -207,55 +207,7 @@ body {
   text-align: center;
 }
 
-/* =========================================================
-   Skills Section
-========================================================= */
-#skills {
-  background: none;
-  padding: 3rem 1rem;
-  width: 100%;
-}
 
-#skills .skills-grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-#skills .skill {
-  color: var(--color-card-text);
-  flex: 1 1 300px;
-  padding: 1.5rem;
-  border-radius: 8px;
-  text-align: center;
-}
-
-#skills .skill h3 {
-  margin-bottom: 0.5rem;
-  font-size: clamp(1rem, 2vw, 1.1rem);
-}
-
-#skills .skill p {
-  margin-bottom: 0.5rem;
-  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-  opacity: 0.8;
-}
-
-#skills .lang {
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
-  opacity: 0.7;
-}
-
-#skills > h2 {
-  text-align: center;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-}
 
 /* =========================================================
    Notebook Embed Container
