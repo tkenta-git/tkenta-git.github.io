@@ -13,7 +13,7 @@ const NFCContactPage: React.FC = () => {
       <div className={styles.linksContainer}>
         {/* Instagram ボタン */}
         <a
-          href="https://www.instagram.com/your_instagram_id"
+          href="https://www.instagram.com/kengram_ken?igsh=MWJrb3BhMW9lMWtvdA%3D%3D&utm_source=qr" // 実際のInstagramのURLに置き換えてください
           target="_blank"
           rel="noopener noreferrer"
           className={`${styles.linkWrapper} ${styles.instagramWrapper}`}
@@ -26,7 +26,7 @@ const NFCContactPage: React.FC = () => {
 
         {/* Facebook ボタン */}
         <a
-          href="https://www.facebook.com/" // 実際のFacebookのURLに置き換えてください
+          href="https://www.facebook.com/share/1HSSehGvQd/?mibextid=wwXIfr" // 実際のFacebookのURLに置き換えてください
           target="_blank"
           rel="noopener noreferrer"
           className={`${styles.linkWrapper} ${styles.facebookWrapper}`}
@@ -39,7 +39,7 @@ const NFCContactPage: React.FC = () => {
 
         {/* Portfolio ボタン */}
         <a
-          href="https://www.example.com/portfolio" // 実際のポートフォリオのURLに置き換えてください
+          href="https://www.kenta-tanaka.com" // 実際のポートフォリオのURLに置き換えてください
           target="_blank"
           rel="noopener noreferrer"
           className={`${styles.linkWrapper} ${styles.portfolioWrapper}`}
