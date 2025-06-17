@@ -122,6 +122,7 @@ export default function About() {
             <li>Observable Plot</li>
           </ul>
         </div>
+
       </section>
 
       <hr />
