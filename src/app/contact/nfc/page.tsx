@@ -13,7 +13,7 @@ const NFCContactPage = () => {
     // 1秒後に元の状態に戻す
     setTimeout(() => {
       setActiveButton(null);
-    }, 1000);
+    }, 500);
   };
 
   return (

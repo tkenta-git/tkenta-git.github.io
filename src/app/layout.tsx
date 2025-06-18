@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 // Interフォントの読み込みを削除
 import Header from '../components/Header'
+import ConditionalHeader from '../components/ConditionalHeader'
 
 // inter変数の定義を削除
 
@@ -19,7 +20,7 @@ export default function RootLayout({
     <html lang="ja">
       {/* bodyタグからclassNameを削除 */}
       <body>
-        <Header />
+        <ConditionalHeader />
         {children}
       </body>
     </html>
