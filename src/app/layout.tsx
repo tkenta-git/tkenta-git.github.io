@@ -1,7 +1,9 @@
+// Import design system styles
+import '../styles/design-tokens.css'
+import '../styles/animations.css'
 import './globals.css'
 import type { Metadata } from 'next'
 // Interフォントの読み込みを削除
-import Header from '../components/Header'
 import ConditionalHeader from '../components/ConditionalHeader'
 
 // inter変数の定義を削除
