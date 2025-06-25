@@ -103,7 +103,9 @@ export const useStaggeredAnimation = (
       { threshold: 0.1 }
     );
 
-    elements.forEach(element => observer.observe(element));
+    elements.forEach(element => {
+      if (element) observer.observe(element);
+    });
 
     return () => observer.disconnect();
   }, [count, baseDelay, animationClass, isVisible]);
