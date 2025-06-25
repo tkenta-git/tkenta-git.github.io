@@ -13,6 +13,8 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read
+  deployments: write
 
 # 同時デプロイを1つに制限
 concurrency:
@@ -26,20 +28,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
+      
+      - name: Detect repository name
+        run: echo "REPO_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+      
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
           static_site_generator: next
-          enablement: true
+        continue-on-error: true
+      
       - name: Install dependencies
         run: npm install
+      
       - name: Build with Next.js
         run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /${{ env.REPO_NAME }}
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
