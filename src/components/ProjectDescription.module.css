@@ -44,6 +44,10 @@
   margin: 4rem auto;
   max-width: 1200px;
   padding: 0 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: containerEnter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.2s;
 }
 
 .divider {
@@ -51,7 +55,16 @@
   height: 1px;
   background-color: #ddd;
   margin: 1.5rem 0;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: dividerExpand 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.4s;
+}
+
+.divider:hover {
+  background-color: #bbb;
+  height: 2px;
 }
 
 .title {
@@ -60,6 +73,17 @@
   margin: 0;
   padding: 0;
   line-height: 1.5;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: titleEnter 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.6s;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+.title:hover {
+  color: #111;
+  transform: translateY(-1px);
 }
 
 .toggleButton {
@@ -74,13 +98,60 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   margin: 1.5rem 0;
+  opacity: 0;
+  transform: translateY(15px) scale(0.98);
+  animation: buttonEnter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.8s;
+  position: relative;
+  overflow: hidden;
+}
+
+.toggleButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
 }
 
 .toggleButton:hover {
   background: #f8f8f8;
   border-color: #ccc;
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.toggleButton:hover::before {
+  left: 100%;
+}
+
+.toggleButton.animating {
+  transform: scale(0.98);
+}
+
+.toggleButton.expanded {
+  background: #f0f0f0;
+  border-color: #bbb;
+}
+
+.buttonText {
+  transition: all 0.3s ease;
+}
+
+.arrow {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center;
+  display: inline-block;
+}
+
+.arrow.rotated {
+  transform: rotate(180deg) scale(1.1);
+  color: #444;
 }
 
 .contentGrid {
@@ -89,15 +160,42 @@
   gap: 3rem;
   margin-top: 2rem;
   opacity: 0;
-  transform: translateY(-10px);
-  animation: fadeIn 0.3s ease forwards;
+  transform: translateY(20px) scale(0.98);
+  animation: contentGridEnter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.2s;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.contentGrid.hasAnimated {
+  animation-delay: 0s;
+}
+
+/* Staggered animation classes */
+.staggered1 {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInLeft 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.4s;
+}
+
+.staggered2 {
+  opacity: 0;
+  transform: translateX(20px);
+  animation: slideInRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.5s;
+}
+
+.staggered3 {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: slideInUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.7s;
+}
+
+.staggered4 {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: slideInUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.9s;
 }
 
 .sectionTitle {
@@ -105,6 +203,35 @@
   font-weight: 700;
   margin-bottom: 1rem;
   color: #222;
+  transition: all 0.3s ease;
+  cursor: default;
+  position: relative;
+}
+
+.sectionTitle:hover {
+  color: #111;
+  transform: translateY(-1px);
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #333, #666);
+  transition: width 0.4s ease;
+}
+
+.sectionTitle:hover::after {
+  width: 100%;
+}
+
+.titleEnter {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: titleReveal 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .keywordsSection .sectionTitle {
@@ -128,7 +255,7 @@
   line-height: 2;
 }
 
-.keywordList li {
+.keywordItem {
   display: inline-block;
   margin: 0.25rem 0.5rem 0.25rem 0;
   padding: 0.25rem 0.75rem;
@@ -136,6 +263,35 @@
   border-radius: 20px;
   font-size: 0.9rem;
   color: #555;
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+  animation: keywordPop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  transition: all 0.3s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.keywordItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.keywordItem:hover {
+  background: #e8e8e8;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.keywordItem:hover::before {
+  left: 100%;
 }
 
 .sectionContent {
@@ -144,6 +300,154 @@
   line-height: 1.8;
   margin: 0;
   color: #444;
+  transition: all 0.3s ease;
+}
+
+.contentEnter {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: contentReveal 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.2s;
+}
+
+.sectionContent:hover {
+  color: #333;
+}
+
+/* Keyframe Animations */
+@keyframes containerEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dividerExpand {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes titleEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes contentGridEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes titleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes contentReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes keywordPop {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+  70% {
+    transform: translateY(-2px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive adjustments */
@@ -159,5 +463,32 @@
 
   .sectionTitle {
     font-size: 1.25rem;
+  }
+
+  /* Adjust animation delays for mobile */
+  .container {
+    animation-delay: 0.1s;
+  }
+  
+  .divider {
+    animation-delay: 0.2s;
+  }
+  
+  .title {
+    animation-delay: 0.3s;
+  }
+  
+  .toggleButton {
+    animation-delay: 0.4s;
+  }
+  
+  .staggered1,
+  .staggered2 {
+    animation-delay: 0.2s;
+  }
+  
+  .staggered3,
+  .staggered4 {
+    animation-delay: 0.3s;
   }
 }

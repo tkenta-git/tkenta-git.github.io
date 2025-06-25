@@ -10,6 +10,21 @@ interface ProjectDescriptionProps {
 
 const ProjectDescription: React.FC<ProjectDescriptionProps> = ({ title, keywords, background, objective }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  const handleToggle = () => {
+    setIsAnimating(true);
+    setIsExpanded(!isExpanded);
+    if (!hasAnimated) {
+      setHasAnimated(true);
+    }
+    
+    // Reset animation state after animation completes
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 600);
+  };
 
   return (
     <div className={styles.container}>
@@ -18,30 +33,39 @@ const ProjectDescription: React.FC<ProjectDescriptionProps> = ({ title, keywords
       <hr className={styles.divider} />
       
       <button 
-        className={styles.toggleButton}
-        onClick={() => setIsExpanded(!isExpanded)}
+        className={`${styles.toggleButton} ${isExpanded ? styles.expanded : ''} ${isAnimating ? styles.animating : ''}`}
+        onClick={handleToggle}
       >
-        {isExpanded ? '詳細を非表示' : '詳細を表示'} ▼
+        <span className={styles.buttonText}>
+          {isExpanded ? '詳細を非表示' : '詳細を表示'}
+        </span>
+        <span className={`${styles.arrow} ${isExpanded ? styles.rotated : ''}`}>▼</span>
       </button>
 
       {isExpanded && (
-        <div className={styles.contentGrid}>
-          <div className={styles.keywordsSection}>
-            <h3 className={styles.sectionTitle}>Keywords</h3>
+        <div className={`${styles.contentGrid} ${hasAnimated ? styles.hasAnimated : ''}`}>
+          <div className={`${styles.keywordsSection} ${styles.staggered1}`}>
+            <h3 className={`${styles.sectionTitle} ${styles.titleEnter}`}>Keywords</h3>
             <ul className={styles.keywordList}>
               {keywords.map((keyword, index) => (
-                <li key={index}>{keyword}</li>
+                <li 
+                  key={index} 
+                  className={styles.keywordItem}
+                  style={{ animationDelay: `${0.8 + index * 0.1}s` }}
+                >
+                  {keyword}
+                </li>
               ))}
             </ul>
           </div>
-          <div className={styles.detailsSection}>
-            <div className={styles.backgroundSection}>
-              <h3 className={styles.sectionTitle}>Background</h3>
-              <p className={styles.sectionContent}>{background}</p>
+          <div className={`${styles.detailsSection} ${styles.staggered2}`}>
+            <div className={`${styles.backgroundSection} ${styles.staggered3}`}>
+              <h3 className={`${styles.sectionTitle} ${styles.titleEnter}`}>Background</h3>
+              <p className={`${styles.sectionContent} ${styles.contentEnter}`}>{background}</p>
             </div>
-            <div className={styles.objectiveSection}>
-              <h3 className={styles.sectionTitle}>Objective</h3>
-              <p className={styles.sectionContent}>{objective}</p>
+            <div className={`${styles.objectiveSection} ${styles.staggered4}`}>
+              <h3 className={`${styles.sectionTitle} ${styles.titleEnter}`}>Objective</h3>
+              <p className={`${styles.sectionContent} ${styles.contentEnter}`}>{objective}</p>
             </div>
           </div>
         </div>
