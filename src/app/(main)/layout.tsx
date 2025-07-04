@@ -1,6 +1,6 @@
 // Import design system styles
-import '../styles/design-tokens.css'
-import '../styles/animations.css'
+import '@/styles/design-tokens.css'
+import '@/styles/animations.css'
 import './globals.css'
 import type { Metadata } from 'next'
 // Interフォントの読み込みを削除
