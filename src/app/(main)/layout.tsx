@@ -4,7 +4,7 @@ import '../styles/animations.css'
 import './globals.css'
 import type { Metadata } from 'next'
 // Interフォントの読み込みを削除
-import ConditionalHeader from '../components/ConditionalHeader'
+import ConditionalHeader from '../../components/ConditionalHeader'
 
 // inter変数の定義を削除
 

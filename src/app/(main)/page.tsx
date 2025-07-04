@@ -1,7 +1,7 @@
 // src/app/page.tsx
 'use client';
 
-import ProjectHeader from '../components/ProjectHeader'; // ProjectHeaderをインポート
+import ProjectHeader from '../../components/ProjectHeader'; // ProjectHeaderをインポート
 
 export default function Home() {
   return (
