@@ -293,6 +293,20 @@ body {
   padding: 0 1rem;
 }
 
+/* Generic section container and rule */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1rem;
+}
+
+.section-rule {
+  height: 2px;
+  background: #111111;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 1024px) {
   .project-cards-container {
     grid-template-columns: repeat(2, 1fr);
