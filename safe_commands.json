@@ -1,0 +1,21 @@
+{
+  "deny_regex": [
+    "(^|\\s)sudo(\\s|$)",
+    "rm\\s+-rf(\\s|$)",
+    "rm\\s+-r\\s+/($|\\s)",
+    "(^|\\s)(mkfs(\\.[a-z0-9]+)?|fdisk|parted)(\\s|$)",
+    "dd\\s+.*(of|if)=/dev/[^\\s]+",
+    "(curl|wget)[^\n]*\\|\\s*(sh|bash|zsh)",
+    "\\b(shutdown|reboot|poweroff|halt)\\b",
+    "chown\\s+-R\\s+root\\s+/",
+    "chmod\\s+777\\s+-R\\s+/",
+    "git\\s+reset\\s+--hard",
+    "kill\\s+-9\\s+-1"
+  ],
+  "deny_substrings": [
+    ":(){ :|:& };:",
+    ":(){ :|: & };:"
+  ],
+  "notes": "Edit this file to customize the denylist. Patterns are regexes applied to the full command string."
+}
+

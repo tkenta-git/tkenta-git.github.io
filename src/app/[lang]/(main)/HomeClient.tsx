@@ -12,6 +12,16 @@ export default function HomeClient() {
           <h2>{t('home.hero.title')}</h2>
           <h3>{t('home.hero.subtitle')}</h3>
           <p className="role">{t('home.hero.role')}</p>
+          
+          {/* CTA Buttons */}
+          <div className="hero-cta">
+            <a href={`/${lang}/contact`} className="cta-primary">
+              {t('home.hero.cta.primary')}
+            </a>
+            <a href={`/${lang}/contact`} className="cta-secondary">
+              {t('home.hero.cta.secondary')} →
+            </a>
+          </div>
         </div>
       </section>
 

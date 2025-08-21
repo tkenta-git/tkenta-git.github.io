@@ -115,9 +115,9 @@ body {
 }
 
 .hero-content h2 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 2.5rem);
   margin-bottom: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.01em;
   opacity: 0;
   transform: translateY(20px);
@@ -140,7 +140,7 @@ body {
 }
 
 .hero-content h3 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: clamp(1rem, 4vw, 1.5rem);
   margin-bottom: 1rem;
   font-weight: 400;
   letter-spacing: 0;
@@ -190,6 +190,97 @@ body {
 
 .role:hover::after {
   width: 100%;
+}
+
+/* Hero CTA Buttons */
+.hero-cta {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroTextReveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 1.7s;
+  flex-wrap: wrap;
+}
+
+.cta-primary {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: #0066cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.cta-primary:hover {
+  background-color: #0052a3;
+  transform: translateY(-2px);
+}
+
+.cta-secondary {
+  color: #222;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.cta-secondary:hover {
+  color: #0066cc;
+  transform: translateX(4px);
+}
+
+.cta-secondary::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #0066cc;
+  transition: width 0.3s ease;
+}
+
+.cta-secondary:hover::after {
+  width: 100%;
+}
+
+/* Responsive design for CTA buttons */
+@media (max-width: 768px) {
+  .hero-cta {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+    margin-top: 2rem;
+  }
+  
+  .cta-primary {
+    text-align: center;
+    padding: 1.2rem 2rem;
+    font-size: 1.2rem;
+  }
+  
+  .cta-secondary {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-cta {
+    margin-top: 1.5rem;
+  }
+  
+  .cta-primary {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+  }
 }
 
 .header-inner {

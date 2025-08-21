@@ -1,7 +1,9 @@
 {
-  "home.hero.title": "田中健大はデザイナーです",
-  "home.hero.subtitle": "コンピュータとのインタラクション体験を向上させます。",
+  "home.hero.title": "ともに考え、意思決定の土台を設計する情報デザイナー",
+  "home.hero.subtitle": "対話→構造化→可視化で、迷いのない合意へ。",
   "home.hero.role": "日本生まれ・日本育ち。",
+  "home.hero.cta.primary": "まずは話す",
+  "home.hero.cta.secondary": "進め方",
   "about.intro.headline": "田中健大は、コンピュータとのインタラクション体験を向上させるデザイナーです。",
   "about.intro.subhead": "私のポートフォリオへようこそ",
   "about.intro.lead": "デザインの力で世界を変えることに情熱を注いでいます。",

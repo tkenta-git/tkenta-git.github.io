@@ -12,6 +12,16 @@ export default function Home() {
           <h2>Kenta Tanaka is a designer</h2>
           <h3>improving experience with computer interactions.</h3>
           <p className="role">Born and raised in Japan.</p>
+          
+          {/* CTA Buttons */}
+          <div className="hero-cta">
+            <a href="/contact" className="cta-primary">
+              Let's talk first
+            </a>
+            <a href="/contact" className="cta-secondary">
+              How to proceed →
+            </a>
+          </div>
         </div>
       </section>
 
