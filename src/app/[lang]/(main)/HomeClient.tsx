@@ -2,6 +2,7 @@
 
 import { useTranslations } from '../i18n';
 import ProjectHeader from '../../../components/ProjectHeader';
+import ProjectCard from '../../../components/ProjectCard';
 
 export default function HomeClient() {
   const { t, lang } = useTranslations();
@@ -25,133 +26,64 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* --- 可視化エリア 新デザイン (Shannon Diversity Index) --- */}
-      <section className="notebook-container" style={{ maxWidth: '100vw', margin: '0 auto', padding: '1rem 0' }}>
-        <ProjectHeader
-          title={t('home.shannon.title')}
-          date={t('home.shannon.date')}
-          description={t('home.shannon.description')}
-        />
-        <div 
-          style={{ position: 'relative', width: '100%', maxWidth: '90wh', margin: '0 auto', borderRadius: '0px', overflow: 'hidden' }}
-        >
-          <a
-            href={`/${lang}/work/observable`}
-            style={{
-              display: 'block',
-              width: '100%',
-              maxWidth: '90vw',
-              height: '100%',
-              position: 'relative',
-              margin: '0 auto',
-            }}
-          >
-            <img
-              src="/shannon.gif"
-              alt="Shannon Diversity Index Visualization"
-              width={1500}
-              height={600}
-              style={{
-                width: '100%',
-                maxWidth: '100vw',
-                height: 'auto',
-                display: 'block',
-                borderRadius: '0px',
-              }}
+      {/* --- Project Cards Section --- */}
+      <section className="project-cards-container">
+        {/* SFC Hello Cycling Card */}
+        <ProjectCard
+          title="SFC通学路上の Hello Cyclingスポット可視化"
+          description="慶應義塾大学SFC一湘南台駅付近のHello Cyclingスポット可視化して、通学路上でのシェアサイクル利用をスムーズに。"
+          date="May 2025"
+          footer="mapbox Jun 2025"
+          content={
+            <iframe
+              src="https://observablehq.com/embed/@kenta-tanaka/sfc-hello-cycling"
+              width="100%"
+              height="300"
+              frameBorder="0"
+              style={{ border: 'none' }}
+              title="SFC Hello Cycling"
             />
-            <div
-              className="hover-overlay"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                background: '#060606',
-                opacity: 0,
-                transition: 'opacity 0.3s ease',
-                display: 'flex',
-                alignItems: 'left',
-                justifyContent: 'left',
-                zIndex: 2,
-                borderRadius: '0px',
-                padding: '1rem',
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'left',
-                  gap: '1rem',
-                  color: 'white',
-                  fontSize: '10rem',
-                  fontWeight: 400,
-                  letterSpacing: '0.00em',
-                  padding: '3rem 0 0 -3rem',
-                }}
-              >
-                {t('home.shannon.try')}
-              </div>
-            </div>
-          </a>
-        </div>
-        <style jsx>{`
-          a:hover .hover-overlay {
-            opacity: 0.85 !important;
           }
-        `}</style>
-      </section>
-
-      {/* --- Cycling Project Section --- */}
-      <section id="notebook-cycling" className="notebook-container" style={{ maxWidth: '100vw', margin: '0 auto', padding: '1rem 0' }}>
-        <ProjectHeader
-          title={t('home.cycling.title')}
-          date={t('home.cycling.date')}
-          description={t('home.cycling.description')}
+          link={`/${lang}/work/observable`}
         />
-        <iframe
-          src="https://observablehq.com/embed/@kenta-tanaka/sfc-hello-cycling"
-          width="100%"
-          height="600"
-          frameBorder="1"
-          style={{ border: '1px solid #eeeeee', borderRadius: '0px' }}
-          title={t('home.cycling.iframeTitle')}
-        ></iframe>
-        <div id="obs-medical"></div>
-      </section>
 
-      {/* --- Shannon Diversity Index (Embedded) Section --- */}
-      <section id="notebook-shannon" className="notebook-container" style={{ maxWidth: '100vw', margin: '0 auto', padding: '1rem 0' }}>
-        <ProjectHeader
-          title={t('home.shannonEmbedded.title')}
-          date={t('home.shannonEmbedded.date')}
-          description={t('home.shannonEmbedded.description')}
+        {/* Shannon Diversity Index Card */}
+        <ProjectCard
+          title="シャノン多様性指数計算機とビジュアライザー"
+          description="情報理論の父シャノンのエントロピー由来の多様性指数を、生態・環境・微生物・経済・社会・都市など多領域等の理解促進へ可視化・対話化として制作。"
+          date="Jun 2025"
+          footer="Jun 2025"
+          content={
+            <iframe
+              src="https://observablehq.com/embed/@kenta-tanaka/shannon-diversity-index-calculator-visualizer"
+              width="100%"
+              height="300"
+              frameBorder="0"
+              style={{ border: 'none' }}
+              title="Shannon Diversity Index Calculator & Visualizer"
+            />
+          }
+          link={`/${lang}/work/observable`}
         />
-        <iframe
-          src="https://observablehq.com/embed/@kenta-tanaka/shannon-diversity-index-calculator-visualizer"
-          width="100%"
-          height="600"
-          frameBorder="0"
-          style={{ border: '1px solid #eeeeee', borderRadius: '0px' }}
-          title={t('home.shannonEmbedded.iframeTitle')}
-        ></iframe>
-      </section>
 
-      {/* --- Medical Expenses in Japan Section --- */}
-      <section id="notebook" className="notebook-container" style={{ maxWidth: '100vw', margin: '0 auto', padding: '1rem 0' }}>
-        <ProjectHeader
-          title={t('home.medical.title')}
-          date={t('home.medical.date')}
-          description={t('home.medical.description')}
+        {/* Medical Expenses in Japan Card */}
+        <ProjectCard
+          title="日本の医療費分析"
+          description="日本における重大な社会問題である社会保障費急増を視覚的にわかりやすく解説。"
+          date="Apr 2025"
+          footer="Apr 2025"
+          content={
+            <iframe
+              src="https://observablehq.com/embed/@kenta-tanaka/medical-expences-in-japan"
+              width="100%"
+              height="300"
+              frameBorder="0"
+              style={{ border: 'none' }}
+              title="Medical Expenses in Japan"
+            />
+          }
+          link={`/${lang}/work/observable`}
         />
-        <iframe
-          src="https://observablehq.com/embed/@kenta-tanaka/medical-expences-in-japan"
-          width="100%"
-          height="600"
-          style={{ border: '1px solid #eeeeee', borderRadius: '0px' }}
-          frameBorder="0"
-          title={t('home.medical.iframeTitle')}
-        ></iframe>
       </section>
 
       {/* --- Contact Form Section --- */}
