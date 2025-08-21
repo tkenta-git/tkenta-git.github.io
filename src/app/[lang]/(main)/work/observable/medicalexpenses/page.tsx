@@ -25,3 +25,7 @@ export default function MedicalExpensesPage() {
     </main>
   );
 }
+
+export function generateStaticParams() {
+  return [{ lang: 'ja' }, { lang: 'en' }];
+}
