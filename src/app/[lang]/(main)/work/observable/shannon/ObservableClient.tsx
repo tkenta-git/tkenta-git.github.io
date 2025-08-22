@@ -5,7 +5,7 @@ import * as d3 from 'd3';
 import styles from './page.module.css';
 import ProjectHeader from '@/components/ProjectHeader';
 import ProjectDescription from '@/components/ProjectDescription';
-import { useTranslations } from '../../../i18n';
+import { useTranslations } from '../../../../i18n';
 
 // --- 型定義 ---
 interface Species {
