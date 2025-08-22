@@ -1,8 +1,8 @@
 'use client';
 
 import { useTranslations } from '../i18n';
-import ProjectHeader from '../../../components/ProjectHeader';
-import ProjectCard from '../../../components/ProjectCard';
+import ProjectHeader from '@/components/ProjectHeader';
+import ProjectCard from '@/components/ProjectCard';
 
 export default function HomeClient() {
   const { t, lang } = useTranslations();

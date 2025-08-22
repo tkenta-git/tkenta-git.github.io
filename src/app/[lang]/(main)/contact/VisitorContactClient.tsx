@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import ProjectHeader from '../../../components/ProjectHeader';
+import ProjectHeader from '@/components/ProjectHeader';
 import { useTranslations } from '../../i18n';
 
 export default function VisitorContactClient() {
