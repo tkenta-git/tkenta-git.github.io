@@ -6,9 +6,9 @@ export default function ShannonPage() {
       <div className="section-container">
         <div className="section-rule" />
         <ProjectHeader
-          title="シャノン多様性指数計算機とビジュアライザー"
+          title="Shannon Diversity Index Calculator & Visualizer"
           date="Jun 2025"
-          description="情報理論の父シャノンのエントロピー由来の多様性指数を、生態・環境・微生物・経済・社会・都市など多領域等の理解促進へ可視化・対話化として制作。"
+          description="An interactive tool to understand the concept of biodiversity through the Shannon Diversity Index. Adjust species populations and observe how diversity and evenness change in real-time."
         />
         
         <div style={{ marginTop: '2rem' }}>
@@ -17,7 +17,7 @@ export default function ShannonPage() {
             width="100%"
             height="600"
             frameBorder="0"
-            style={{ border: 'none' }}
+            style={{ border: '1px solid #e6e6e6', borderRadius: '0px' }}
             title="Shannon Diversity Index Calculator & Visualizer"
           />
         </div>
