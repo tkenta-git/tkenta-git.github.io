@@ -20,7 +20,7 @@
 .divider {
   border-top: 2px solid #111;
   width: 100%;
-  max-width: 100vw;
+  max-width: 1200px;
   margin: 0 auto 1.5rem auto;
   position: relative;
   overflow: hidden;
@@ -81,23 +81,9 @@
 .title:hover {
   background-position: 100% 100%;
   transform: translateY(-1px);
-  letter-spacing: 0.01em;
 }
 
-.title::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #111, #666);
-  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
 
-.title:hover::after {
-  width: 50%;
-}
 
 .date {
   font-size: 1.5rem;

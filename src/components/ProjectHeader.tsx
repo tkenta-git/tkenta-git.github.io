@@ -11,9 +11,6 @@ interface ProjectHeaderProps {
 const ProjectHeader: React.FC<ProjectHeaderProps> = ({ title, date, description }) => {
   return (
     <div className={styles.container}>
-      {/* Animated divider with shimmer effect */}
-      <div className={styles.divider} />
-      
       {/* Content container with staggered animations */}
       <div className={styles.content}>
         {/* Title and date row with opposite slide animations */}

@@ -12,7 +12,6 @@ export default function Home() {
         <div className="hero-content">
           <h2>Kenta Tanaka is a designer</h2>
           <h3>improving experience with computer interactions.</h3>
-          <p className="role">Born and raised in Japan.</p>
           
           {/* CTA Buttons */}
           <div className="hero-cta">

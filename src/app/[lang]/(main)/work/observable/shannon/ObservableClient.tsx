@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import styles from './page.module.css';
-import ProjectHeader from '@/components/ProjectHeader';
-import ProjectDescription from '@/components/ProjectDescription';
+import ProjectHeader from '../../../../../../components/ProjectHeader';
+import ProjectDescription from '../../../../../../components/ProjectDescription';
 import { useTranslations } from '../../../../i18n';
 
 // --- 型定義 ---
@@ -160,12 +160,14 @@ export default function ObservableClient() {
     objective: t('observable.objective'),
   };
   return (
-    <div className={styles.pageContainer} style={{ width: '90vw', margin: '0 auto' }}>
-      <ProjectHeader
-        title={t('observable.header.title')}
-        date={t('observable.header.date')}
-        description={t('observable.header.description')}
-      />
+    <div className={styles.pageContainer} style={{ maxWidth: '1200px', width: '100%', margin: '0 auto', padding: '0 1rem' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <ProjectHeader
+          title={t('observable.header.title')}
+          date={t('observable.header.date')}
+          description={t('observable.header.description')}
+        />
+      </div>
       <div className={styles.main}>
         <div className={styles.controls}>
           <h2>{t('observable.controls.title')}</h2>

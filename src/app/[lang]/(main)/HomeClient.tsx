@@ -12,7 +12,6 @@ export default function HomeClient() {
         <div className="hero-content">
           <h2>{t('home.hero.title')}</h2>
           <h3>{t('home.hero.subtitle')}</h3>
-          <p className="role">{t('home.hero.role')}</p>
           
           {/* CTA Buttons */}
           <div className="hero-cta">

@@ -1,4 +1,4 @@
-import ProjectHeader from '../../../../components/ProjectHeader';
+import ProjectHeader from '../../../../../../components/ProjectHeader';
 
 export default function MedicalExpensesPage() {
   return (

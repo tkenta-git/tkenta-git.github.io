@@ -1,10 +1,24 @@
 import Link from 'next/link';
-import { useTranslations } from '../app/[lang]/i18n';
 import { usePathname } from 'next/navigation';
 
 export default function Header() {
-  const { lang } = useTranslations?.() || { lang: 'ja' };
   const pathname = usePathname();
+  
+  // Extract current language from pathname
+  let lang = 'ja'; // default to Japanese
+  
+  if (pathname?.startsWith('/en')) {
+    lang = 'en';
+  } else if (pathname?.startsWith('/ja')) {
+    lang = 'ja';
+  } else if (pathname === '/') {
+    // For root page, check if we're in an English context
+    // This might need to be adjusted based on your routing logic
+    lang = 'en'; // Assuming root page is English for now
+  }
+  
+  // Debug: log current values
+  console.log('Header - pathname:', pathname, 'lang:', lang);
 
   // Helper to swap /ja or /en in the current path
   function getLangPath(targetLang: string) {
@@ -33,9 +47,57 @@ export default function Header() {
             <li className="nav-item"><Link href={navHref('/about')} className="nav-link">About</Link></li>
             <li className="nav-item"><Link href={navHref('/contact')} className="nav-link">Contact</Link></li>
             <li className="nav-item lang-switch" style={{ marginLeft: '2.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Link href={getLangPath('ja')} className={`nav-link${lang === 'ja' ? ' active' : ''}`}>JA</Link>
+              <div style={{ position: 'relative' }}>
+                <Link 
+                  href={getLangPath('ja')} 
+                  style={{
+                    color: '#222',
+                    fontWeight: 500,
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+
+                >
+                  JA
+                </Link>
+                <div style={{
+                  position: 'absolute',
+                  left: 0,
+                  bottom: '-1px',
+                  width: '100%',
+                  height: '1px',
+                  background: '#222',
+                  transform: lang === 'ja' ? 'scaleX(1)' : 'scaleX(0)',
+                  transformOrigin: 'left',
+                  transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)'
+                }} />
+              </div>
               <span style={{ color: '#bbb', fontSize: '1rem', userSelect: 'none' }}>/</span>
-              <Link href={getLangPath('en')} className={`nav-link${lang === 'en' ? ' active' : ''}`}>EN</Link>
+              <div style={{ position: 'relative' }}>
+                <Link 
+                  href={getLangPath('en')} 
+                  style={{
+                    color: '#222',
+                    fontWeight: 500,
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+
+                >
+                  EN
+                </Link>
+                <div style={{
+                  position: 'absolute',
+                  left: 0,
+                  bottom: '-1px',
+                  width: '100%',
+                  height: '1px',
+                  background: '#222',
+                  transform: lang === 'en' ? 'scaleX(1)' : 'scaleX(0)',
+                  transformOrigin: 'left',
+                  transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)'
+                }} />
+              </div>
             </li>
           </ul>
         </nav>
