@@ -78,9 +78,11 @@ body {
   flex-direction: column;
   justify-content: center;
   background-color: var(--color-page-bg);
-  min-height: 80vh;
+  height: 100vh;
   position: relative;
   overflow: hidden;
+  animation: heroHeightShrink 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 2s;
 }
 
 .hero::before {
@@ -277,6 +279,10 @@ body {
   max-width: 1200px;
   margin: 4rem auto;
   padding: 0 1rem;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: projectCardsReveal 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 6s;
 }
 
 /* Generic section container and rule */
@@ -346,6 +352,28 @@ body {
   50% {
     opacity: 0.5;
     transform: scale(1.05) rotate(0.5deg);
+  }
+}
+
+/* Hero セクションの高さ変化アニメーション */
+@keyframes heroHeightShrink {
+  0% {
+    height: 100vh;
+  }
+  100% {
+    height: 60vh;
+  }
+}
+
+/* プロジェクトカードの登場アニメーション */
+@keyframes projectCardsReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
