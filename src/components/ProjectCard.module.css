@@ -37,12 +37,17 @@
 
 /* Header */
 .cardHeader {
-  padding: 1.25rem 0 1.5rem; /* adjusted for consistent height from top rule to mid rule */
+  height: 7rem; /* Fixed height to unify title area from top rule to mid rule */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1rem;
 }
 
 .title {
   font-size: clamp(1rem, 4vw, 1.5rem);
   font-weight: 700;
+  font-family: "MyJapanese", "Hiragino Kaku Gothic Pro W6", "Hiragino Kaku Gothic Pro W3", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   color: #000000;
   margin: 0;
   line-height: 1.35;
@@ -118,9 +123,14 @@
 }
 
 .cardLink:hover .title { 
-  text-decoration: underline; 
-  text-underline-offset: 3px; 
-  font-weight: 900;
+  text-decoration: underline !important; 
+  text-underline-offset: 3px !important; 
+  font-weight: 900 !important; /* 700 → 900 に変更 */
+}
+
+/* より確実なホバー効果 */
+.card:hover .title {
+  font-weight: 900 !important;
 }
 
 /* Responsive */

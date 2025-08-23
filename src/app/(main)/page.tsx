@@ -10,8 +10,8 @@ export default function Home() {
       
       <section className="hero">
         <div className="hero-content">
-          <h2>Kenta Tanaka is a designer</h2>
-          <h3>improving experience with computer interactions.</h3>
+          <h2>Thinking together, designing the foundation for decisions.</h2>
+          <h3>Dialogue → Structure → Visualization for clear agreement.</h3>
           
           {/* CTA Buttons */}
           <div className="hero-cta">
