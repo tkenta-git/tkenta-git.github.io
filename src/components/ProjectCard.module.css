@@ -122,16 +122,16 @@
   }
 }
 
-.cardLink:hover .title { 
+/* ホバーアニメーションを削除 - シャノン多様性指数のキーワードアニメーション不要 */
+/* .cardLink:hover .title { 
   text-decoration: underline !important; 
   text-underline-offset: 3px !important; 
-  font-weight: 900 !important; /* 700 → 900 に変更 */
-}
-
-/* より確実なホバー効果 */
-.card:hover .title {
   font-weight: 900 !important;
 }
+
+.card:hover .title {
+  font-weight: 900 !important;
+} */
 
 /* Responsive */
 @media (max-width: 768px) {
