@@ -1,5 +1,5 @@
-# 開発・本番環境への自動デプロイワークフロー
-name: Deploy Next.js site to Development and Production
+# 本番環境への自動デプロイワークフロー
+name: Deploy Next.js site to Production
 
 on:
   # mainブランチにプッシュされた時に実行
@@ -57,17 +57,17 @@ jobs:
         with:
           path: ./out
 
-  # 開発環境デプロイジョブ（portfolio_250506のGitHub Pages）
-  deploy-dev:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to Development GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+  # 開発環境デプロイジョブ（開発用リポジトリのため無効化）
+  # deploy-dev:
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: Deploy to Development GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v4
 
   # 本番環境デプロイジョブ（tkenta-git.github.io）
   deploy-prod:
