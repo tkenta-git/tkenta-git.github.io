@@ -1,5 +1,5 @@
-# GitHub Pagesにデプロイするためのシンプルなワークフロー
-name: Deploy Next.js site to Pages
+# 開発・本番環境への自動デプロイワークフロー
+name: Deploy Next.js site to Development and Production
 
 on:
   # mainブランチにプッシュされた時に実行
@@ -57,14 +57,39 @@ jobs:
         with:
           path: ./out
 
-  # デプロイジョブ
-  deploy:
+  # 開発環境デプロイジョブ（portfolio_250506のGitHub Pages）
+  deploy-dev:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy to Development GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # 本番環境デプロイジョブ（tkenta-git.github.io）
+  deploy-prod:
+    environment:
+      name: github-pages
+      url: https://tkenta-git.github.io
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout production repository
+        uses: actions/checkout@v4
+        with:
+          repository: tkenta-git/tkenta-git.github.io
+          token: ${{ secrets.DEPLOY_TOKEN }}
+          path: production-repo
+      
+      - name: Copy built files to production
+        run: |
+          cp -r out/* production-repo/
+          cd production-repo
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -m "Auto-deploy from portfolio_250506: ${{ github.sha }}"
+          git push origin main
