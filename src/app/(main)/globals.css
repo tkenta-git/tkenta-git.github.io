@@ -82,8 +82,8 @@ body {
   position: relative;
   z-index: 10;
   overflow: hidden;
-  animation: heroHeightShrink 2s cubic-bezier(0.16, 0, 0.41, 1) forwards;
-  animation-delay: 0.5s;
+  animation: heroHeightShrink 1s cubic-bezier(0.16, 0, 0.41, 1) forwards;
+  animation-delay: 0.2s;
 }
 
 .hero::before {
@@ -106,8 +106,8 @@ body {
   margin: 0 auto;
   opacity: 0;
   transform: translateY(30px) scale(0.95);
-  animation: heroEnhancedEntry 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  animation-delay: 0.3s;
+  animation: heroEnhancedEntry 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.1s;
   position: relative;
   z-index: 15;
   transition: transform 0.3s ease;
@@ -122,8 +122,8 @@ body {
   letter-spacing: 0.01em;
   opacity: 0;
   transform: translateY(20px);
-  animation: heroTextReveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  animation-delay: 0.8s;
+  animation: heroTextReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.4s;
   cursor: text;
   transition: all 0.3s ease;
   background: linear-gradient(45deg, #222, #444, #222);
@@ -143,8 +143,8 @@ body {
   letter-spacing: 0;
   opacity: 0;
   transform: translateY(20px);
-  animation: heroTextReveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  animation-delay: 1.1s;
+  animation: heroTextReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.6s;
   cursor: text;
   transition: all 0.3s ease;
   color: #333;
@@ -156,8 +156,8 @@ body {
   font-size: clamp(1rem, 2vw, 1.2rem);
   opacity: 0;
   transform: translateY(15px);
-  animation: heroTextReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  animation-delay: 1.4s;
+  animation: heroTextReveal 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.8s;
   cursor: default;
   transition: all 0.3s ease;
   color: #666;
@@ -188,8 +188,8 @@ body {
   margin-top: 3rem;
   opacity: 0;
   transform: translateY(20px);
-  animation: heroTextReveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  animation-delay: 1.7s;
+  animation: heroTextReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 1s;
   flex-wrap: wrap;
 }
 
@@ -204,13 +204,14 @@ body {
   border-radius: 8px;
   font-weight: 500;
   font-size: 1.1rem;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
   border: 2px solid transparent;
   box-sizing: border-box;
 }
 
 .cta-primary:hover {
   border: 2px solid #000;
+  font-weight: 600;
 }
 
 .cta-secondary {
@@ -292,7 +293,13 @@ body {
   opacity: 0;
   transform: translateY(50px);
   animation: projectCardsReveal 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  animation-delay: 2s;
+  animation-delay: 1s;
+}
+
+/* ホバー時の他カードのグレーアウト効果 */
+.project-cards-container:hover .card:not(:hover) {
+  opacity: 0.4;
+  filter: grayscale(30%);
 }
 
 /* Generic section container and rule */
