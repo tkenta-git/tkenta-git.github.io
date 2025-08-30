@@ -1,5 +1,5 @@
-# GitHub Pagesへの自動デプロイワークフロー（カスタムドメイン対応）
-name: Deploy to GitHub Pages
+# 本番環境への自動デプロイワークフロー
+name: Deploy Next.js site to Production
 
 on:
   # mainブランチにプッシュされた時に実行
@@ -13,6 +13,8 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read
+  deployments: write
 
 # 同時デプロイを1つに制限
 concurrency:
@@ -25,10 +27,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@4
+        uses: actions/checkout@v4
       
       - name: Setup Node
-        uses: actions/setup-node@4
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
@@ -39,22 +41,39 @@ jobs:
       - name: Build with Next.js
         run: npm run build
       
-      - name: Setup Pages
-        uses: actions/configure-pages@4
-      
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@4
+        uses: actions/upload-artifact@v4
         with:
+          name: build-files
           path: ./out
 
-  # GitHub Pagesへのデプロイ
-  deploy:
+  # 本番環境デプロイジョブ（tkenta-git.github.io）
+  deploy-prod:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://kenta-tanaka.com
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@4
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: ./out
+      
+      - name: Checkout production repository
+        uses: actions/checkout@v4
+        with:
+          repository: tkenta-git/tkenta-git.github.io
+          token: ${{ secrets.DEPLOY_TOKEN }}
+          path: production-repo
+      
+      - name: Copy built files to production
+        run: |
+          cp -r out/* production-repo/
+          cd production-repo
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -m "Auto-deploy from kenta-portfolio-dev: ${{ github.sha }}"
+          git push origin main
