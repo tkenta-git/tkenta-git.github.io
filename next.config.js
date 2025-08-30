@@ -9,6 +9,12 @@ const nextConfig = {
         unoptimized: true, // GitHub Pagesでは画像最適化が使えないため
       },
       trailingSlash: true, // GitHub Pages用にトレイリングスラッシュを有効化
+      // GitHub Pages用の追加設定
+      experimental: {
+        appDir: true,
+      },
+      // 静的ファイルの出力設定
+      distDir: 'out',
     }),
   };
   
