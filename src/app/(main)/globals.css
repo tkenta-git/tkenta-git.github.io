@@ -1146,3 +1146,15 @@ body {
 .nav-link.active::after {
   transform: scaleX(1);
 }
+
+/* 言語切り替えリンク専用スタイル */
+.lang-link {
+  position: relative;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* 非アクティブな言語のホバー効果 */
+.lang-link:hover {
+  color: #222 !important;
+}

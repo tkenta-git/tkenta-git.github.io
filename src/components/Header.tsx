@@ -56,55 +56,31 @@ export default function Header() {
             <li className="nav-item"><Link href={navHref('/about')} className="nav-link">About</Link></li>
             <li className="nav-item"><Link href={navHref('/contact')} className="nav-link">Contact</Link></li>
             <li className="nav-item lang-switch" style={{ marginLeft: '2.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <div style={{ position: 'relative' }}>
-                <Link 
-                  href={getLangPath('ja')} 
-                  style={{
-                    color: '#222',
-                    fontWeight: 500,
-                    textDecoration: 'none',
-                    transition: 'color 0.2s'
-                  }}
-                >
-                  JA
-                </Link>
-                <div style={{
-                  position: 'absolute',
-                  left: 0,
-                  bottom: '-1px',
-                  width: '100%',
-                  height: '1px',
-                  background: '#222',
-                  transform: lang === 'ja' ? 'scaleX(1)' : 'scaleX(0)',
-                  transformOrigin: 'left',
-                  transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)'
-                }} />
-              </div>
-              <span style={{ color: '#bbb', fontSize: '1rem', userSelect: 'none' }}>/</span>
-              <div style={{ position: 'relative' }}>
-                <Link 
-                  href={getLangPath('en')} 
-                  style={{
-                    color: '#222',
-                    fontWeight: 500,
-                    textDecoration: 'none',
-                    transition: 'color 0.2s'
-                  }}
-                >
-                  EN
-                </Link>
-                <div style={{
-                  position: 'absolute',
-                  left: 0,
-                  bottom: '-1px',
-                  width: '100%',
-                  height: '1px',
-                  background: '#222',
-                  transform: lang === 'en' ? 'scaleX(1)' : 'scaleX(0)',
-                  transformOrigin: 'left',
-                  transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)'
-                }} />
-              </div>
+              <Link 
+                href={getLangPath('ja')} 
+                className="lang-link"
+                style={{
+                  color: lang === 'ja' ? '#222' : '#ddd',
+                  fontWeight: lang === 'ja' ? 600 : 400,
+                  textDecoration: 'none',
+                  transition: 'color 0.2s ease'
+                }}
+              >
+                JA
+              </Link>
+              <span style={{ color: '#eee', fontSize: '1rem', userSelect: 'none' }}>/</span>
+              <Link 
+                href={getLangPath('en')} 
+                className="lang-link"
+                style={{
+                  color: lang === 'en' ? '#222' : '#ddd',
+                  fontWeight: lang === 'en' ? 600 : 400,
+                  textDecoration: 'none',
+                  transition: 'color 0.2s ease'
+                }}
+              >
+                EN
+              </Link>
             </li>
           </ul>
         </nav>
@@ -152,23 +128,23 @@ export default function Header() {
                   <Link 
                     href={getLangPath('ja')} 
                     style={{
-                      color: lang === 'ja' ? '#222' : '#bbb',
+                      color: lang === 'ja' ? '#222' : '#ddd',
                       fontWeight: lang === 'ja' ? 600 : 400,
                       textDecoration: 'none',
-                      transition: 'color 0.2s'
+                      transition: 'color 0.2s ease'
                     }}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     JA
                   </Link>
-                  <span style={{ color: '#bbb', fontSize: '1rem', userSelect: 'none' }}>/</span>
+                  <span style={{ color: '#eee', fontSize: '1rem', userSelect: 'none' }}>/</span>
                   <Link 
                     href={getLangPath('en')} 
                     style={{
-                      color: lang === 'en' ? '#222' : '#bbb',
+                      color: lang === 'en' ? '#222' : '#ddd',
                       fontWeight: lang === 'en' ? 600 : 400,
                       textDecoration: 'none',
-                      transition: 'color 0.2s'
+                      transition: 'color 0.2s ease'
                     }}
                     onClick={() => setIsMenuOpen(false)}
                   >
