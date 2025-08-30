@@ -1,5 +1,5 @@
-# 本番環境への自動デプロイワークフロー
-name: Deploy Next.js site to Production
+# GitHub Pagesへの自動デプロイワークフロー（カスタムドメイン対応）
+name: Deploy to GitHub Pages
 
 on:
   # mainブランチにプッシュされた時に実行
@@ -13,8 +13,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  actions: read
-  deployments: write
 
 # 同時デプロイを1つに制限
 concurrency:
@@ -27,75 +25,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@4
       
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@4
         with:
           node-version: "20"
           cache: "npm"
-      
-      - name: Detect repository name
-        run: echo "REPO_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
-      
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: next
-        continue-on-error: true
       
       - name: Install dependencies
         run: npm install
       
       - name: Build with Next.js
         run: npm run build
-        env:
-          NEXT_PUBLIC_BASE_PATH: /${{ env.REPO_NAME }}
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@4
       
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@4
         with:
           path: ./out
 
-  # 開発環境デプロイジョブ（開発用リポジトリのため無効化）
-  # deploy-dev:
-  #   environment:
-  #     name: github-pages
-  #     url: ${{ steps.deployment.outputs.page_url }}
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #     - name: Deploy to Development GitHub Pages
-  #       id: deployment
-  #       uses: actions/deploy-pages@v4
-
-  # 本番環境デプロイジョブ（tkenta-git.github.io）
-  deploy-prod:
+  # GitHub Pagesへのデプロイ
+  deploy:
     environment:
       name: github-pages
-      url: https://tkenta-git.github.io
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          path: ./out
-      
-      - name: Checkout production repository
-        uses: actions/checkout@v4
-        with:
-          repository: tkenta-git/tkenta-git.github.io
-          token: ${{ secrets.DEPLOY_TOKEN }}
-          path: production-repo
-      
-      - name: Copy built files to production
-        run: |
-          cp -r out/* production-repo/
-          cd production-repo
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add -A
-          git commit -m "Auto-deploy from kenta-portfolio-dev: ${{ github.sha }}"
-          git push origin main
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@4
