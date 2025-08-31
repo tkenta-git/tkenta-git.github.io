@@ -5,3 +5,4 @@ Created by Kenta Tanaka
 - **Date**: January 2025
 - **Features**: Responsive header with mobile hamburger menu
 - **Status**: Auto-deploy system configured# test automatic deployment
+# test deploy workflow
