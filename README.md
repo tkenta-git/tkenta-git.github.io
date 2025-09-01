@@ -6,3 +6,4 @@ Created by Kenta Tanaka
 - **Features**: Responsive header with mobile hamburger menu
 - **Status**: Auto-deploy system configured# test automatic deployment
 # test deploy workflow
+# force rebuild
